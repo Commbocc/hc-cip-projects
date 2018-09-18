@@ -5,3 +5,14 @@
   // -webkit-font-smoothing: antialiased;
   // -moz-osx-font-smoothing: grayscale;
 }
+
+@media (min-width: 768px) {
+  #quick-facts {
+    column-count: 2;
+    .quick-fact {
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+  }
+}
