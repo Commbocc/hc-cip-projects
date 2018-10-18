@@ -24,14 +24,23 @@ export default {
         container: this.$el,
         map,
         center: [-49.97, 41.73],
-        zoom: 5
+        zoom: 10
       })
 
       var point = {
         type: 'point', // autocasts as new Point()
-        longitude: -49.97,
-        latitude: 41.73
+        x: this.geometry.x,
+        y: this.geometry.y,
+        spatialReference: {
+          wkid: 102100,
+          latestWkid: 3857
+        }
       }
+
+      view.center = point
+
+      view.ui.components = [ "attribution" ]
+      view.on(['mouse-wheel', 'double-click', 'drag'], event => event.stopPropagation())
 
       // Create a symbol for drawing the point
       var markerSymbol = {
