@@ -6,13 +6,13 @@
   // -moz-osx-font-smoothing: grayscale;
 }
 
-@media (min-width: 768px) {
-  #project-facts {
-    column-count: 2;
-    .quick-fact {
-      -webkit-column-break-inside: avoid;
-      page-break-inside: avoid;
-      break-inside: avoid;
-    }
-  }
-}
+// @media (min-width: 768px) {
+//   #project-facts {
+//     column-count: 2;
+//     .quick-fact {
+//       -webkit-column-break-inside: avoid;
+//       page-break-inside: avoid;
+//       break-inside: avoid;
+//     }
+//   }
+// }
