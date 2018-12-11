@@ -15,50 +15,65 @@
       <!-- facts -->
       <div id="project-facts">
 
-        <div class="quick-fact">
+        <div class="">
           <h3>Quick Facts</h3>
           <ul>
-            <li>Location: {{ project.attributes.DESC5 }}</li>
+            <li>Community Area: {{ project.attributes.DESC5 }}</li>
             <!-- <li>Length: -</li> -->
             <li>Category: {{ project.attributes.Major_Category }} - {{ project.attributes.SHORT_DESC }}</li>
             <li>Schedule: {{ project.attributes.Current_Phase_CompleteDate }}</li>
           </ul>
         </div>
 
-        <div class="quick-fact">
-          <h3>Overview</h3>
+        <div class="">
+          <h3>Estimated Project Schedule</h3>
           <ul>
-            <li>{{ project.attributes.DESC1 }}</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+            <li>Project Development Completion: {{ project.attributes.CloseoutDate }}</li>
+            <li>Design/Land Acquisition: {{ project.attributes.DesignDate }}</li>
+            <li>Procurement for Construction: {{ project.attributes.ProcureDate }}</li>
+            <li>Construction: {{ project.attributes.Constr_Start }}</li>
           </ul>
         </div>
 
-        <div class="quick-fact">
-          <h3>Benefits</h3>
+        <div class="">
+          <h3>Project Description</h3>
           <ul>
-            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+            <li v-if="project.attributes.DESC1">{{ project.attributes.DESC1 }}</li>
+            <li v-if="project.attributes.DESC2">{{ project.attributes.DESC2 }}</li>
+            <li v-if="project.attributes.DESC3">{{ project.attributes.DESC3 }}</li>
           </ul>
         </div>
 
-        <div class="quick-fact">
-          <h3>Cost Estimate</h3>
+        <div class="">
+          <h3>Project Objective</h3>
           <ul>
-            <li>Total: ${{ project.attributes.Project_Budget }}</li>
-            <li>Design: $</li>
-            <li>Land Acquisition: $ </li>
-            <li>Construction: $</li>
+            <li v-if="project.attributes.Obj1">{{ project.attributes.Obj1 }}</li>
+            <li v-if="project.attributes.Obj2">{{ project.attributes.Obj2 }}</li>
+            <li v-if="project.attributes.Obj3">{{ project.attributes.Obj3 }}</li>
+            <li v-if="project.attributes.Obj4">{{ project.attributes.Obj4 }}</li>
           </ul>
         </div>
 
-        <div class="quick-fact">
-          <h3>Funding</h3>
+        <div class="">
+          <h3>Estimated Project Budget</h3>
           <ul>
-            <li>Lorem: $ </li>
-            <li>Lorem: $ </li>
-            <li>Lorem: $ </li>
+            <li>
+              Total: ${{ project.attributes.Project_Budget }}
+              <ul>
+                <li v-if="project.attributes.DesignBudget">Design: ${{ project.attributes.DesignBudget }}</li>
+                <li v-if="project.attributes.PlanningBudget">Land Acquisition: ${{ project.attributes.PlanningBudget }} </li>
+                <li v-if="project.attributes.Constr_Budget">Construction: ${{ project.attributes.Constr_Budget }}</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div v-if="false" class="">
+          <h3>Project Manager</h3>
+          <ul>
+            <li>Lorem: </li>
+            <li>Lorem: </li>
+            <li>Lorem: </li>
           </ul>
         </div>
       </div>
@@ -68,6 +83,10 @@
         <div is="ProjMap" :geometry="project.geometry"></div>
       </div>
 
+      <h4>Questions?</h4>
+      For more information about this please contact
+      <pre>Public Works at (813) 635-5400 or email</pre>
+
       <hr>
 
       <div class="d-flex justify-content-end align-items-end">
@@ -75,7 +94,8 @@
       </div>
 
       <div class="my-3 p-3 bg-dark text-light d-print-none">
-        <details open>
+        <details>
+          <summary>Development Details</summary>
           <pre class="text-light">{{ project }}</pre>
         </details>
       </div>

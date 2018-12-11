@@ -52,7 +52,7 @@ export default {
   },
   created () {
     this.$store.state.loading = true
-    Project.All().then(json => {
+    Project.All('Display=1').then(json => {
       this.projects = json
     }).catch(err => console.error(err)).finally(() => {
       this.$store.state.loading = false
