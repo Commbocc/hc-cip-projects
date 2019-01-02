@@ -3,10 +3,10 @@
     <div class="container">
 
       <h2 class="mb-0 text-primary font-weight-bold">
-        {{ project.attributes.name }}
+        {{ project.name }}
         <br>
         <small class="text-muted">
-          #{{ project.attributes.PLACENUMSL }}
+          #{{ project.PLACENUMSL }}
         </small>
       </h2>
 
@@ -18,39 +18,39 @@
         <div class="">
           <h3>Quick Facts</h3>
           <ul>
-            <li>Community Area: {{ project.attributes.DESC5 }}</li>
+            <li>Community Area: {{ project.DESC5 }}</li>
             <!-- <li>Length: -</li> -->
-            <li>Category: {{ project.attributes.Major_Category }} - {{ project.attributes.SHORT_DESC }}</li>
-            <li>Schedule: {{ project.attributes.Current_Phase_CompleteDate }}</li>
+            <li>Category: {{ project.Major_Category }} - {{ project.SHORT_DESC }}</li>
+            <li>Schedule: {{ project.Current_Phase_CompleteDate }}</li>
           </ul>
         </div>
 
         <div class="">
           <h3>Estimated Project Schedule</h3>
           <ul>
-            <li>Project Development Completion: {{ project.attributes.CloseoutDate }}</li>
-            <li>Design/Land Acquisition: {{ project.attributes.DesignDate }}</li>
-            <li>Procurement for Construction: {{ project.attributes.ProcureDate }}</li>
-            <li>Construction: {{ project.attributes.Constr_Start }}</li>
+            <li>Project Development Completion: {{ project.CloseoutDate }}</li>
+            <li>Design/Land Acquisition: {{ project.DesignDate }}</li>
+            <li>Procurement for Construction: {{ project.ProcureDate }}</li>
+            <li>Construction: {{ project.Constr_Start }}</li>
           </ul>
         </div>
 
         <div class="">
           <h3>Project Description</h3>
           <ul>
-            <li v-if="project.attributes.DESC1">{{ project.attributes.DESC1 }}</li>
-            <li v-if="project.attributes.DESC2">{{ project.attributes.DESC2 }}</li>
-            <li v-if="project.attributes.DESC3">{{ project.attributes.DESC3 }}</li>
+            <li v-if="project.DESC1">{{ project.DESC1 }}</li>
+            <li v-if="project.DESC2">{{ project.DESC2 }}</li>
+            <li v-if="project.DESC3">{{ project.DESC3 }}</li>
           </ul>
         </div>
 
         <div class="">
           <h3>Project Objective</h3>
           <ul>
-            <li v-if="project.attributes.Obj1">{{ project.attributes.Obj1 }}</li>
-            <li v-if="project.attributes.Obj2">{{ project.attributes.Obj2 }}</li>
-            <li v-if="project.attributes.Obj3">{{ project.attributes.Obj3 }}</li>
-            <li v-if="project.attributes.Obj4">{{ project.attributes.Obj4 }}</li>
+            <li v-if="project.Obj1">{{ project.Obj1 }}</li>
+            <li v-if="project.Obj2">{{ project.Obj2 }}</li>
+            <li v-if="project.Obj3">{{ project.Obj3 }}</li>
+            <li v-if="project.Obj4">{{ project.Obj4 }}</li>
           </ul>
         </div>
 
@@ -58,11 +58,11 @@
           <h3>Estimated Project Budget</h3>
           <ul>
             <li>
-              Total: ${{ project.attributes.Project_Budget }}
+              Total: ${{ project.Project_Budget }}
               <ul>
-                <li v-if="project.attributes.DesignBudget">Design: ${{ project.attributes.DesignBudget }}</li>
-                <li v-if="project.attributes.PlanningBudget">Land Acquisition: ${{ project.attributes.PlanningBudget }} </li>
-                <li v-if="project.attributes.Constr_Budget">Construction: ${{ project.attributes.Constr_Budget }}</li>
+                <li v-if="project.DesignBudget">Design: ${{ project.DesignBudget }}</li>
+                <li v-if="project.PlanningBudget">Land Acquisition: ${{ project.PlanningBudget }} </li>
+                <li v-if="project.Constr_Budget">Construction: ${{ project.Constr_Budget }}</li>
               </ul>
             </li>
           </ul>
@@ -84,8 +84,7 @@
       </div>
 
       <h4>Questions?</h4>
-      For more information about this please contact
-      <pre>Public Works at (813) 635-5400 or email</pre>
+      For more information about this please contact Public Works at (813) 635-5400 or email ...
 
       <hr>
 
@@ -105,7 +104,7 @@
 </template>
 
 <script>
-import Project from '../store/project'
+import Project from '../store/models/project'
 import ProjMap from './Map'
 
 export default {

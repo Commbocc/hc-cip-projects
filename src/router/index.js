@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import ProjectModel from '../store/project'
-
 // import store from '../store'
 // import Hello from '../components/Hello'
 import ProjectIndex from '../components/ProjectIndex'
@@ -13,10 +11,12 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   routes: [
     {
+      name: 'Index',
       path: '/',
       component: ProjectIndex
     },
     {
+      name: 'Show',
       path: '/:id',
       component: Project,
       props: (route) => ({ id: route.params.id })

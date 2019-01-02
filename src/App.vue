@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <router-view v-show="!$store.state.loading"></router-view>
+    <router-view :key="$route.fullPath" v-show="!$store.state.loading"></router-view>
 
   </div>
 </template>
