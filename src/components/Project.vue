@@ -20,8 +20,8 @@
           <ul>
             <li>Community Area: {{ project.DESC5 }}</li>
             <!-- <li>Length: -</li> -->
-            <li>Category: {{ project.Major_Category }} - {{ project.SHORT_DESC }}</li>
-            <li>Schedule: {{ project.Current_Phase_CompleteDate }}</li>
+            <li>Type: {{ project.Major_Category }} - {{ project.SHORT_DESC }}</li>
+            <!-- <li>Schedule: {{ project.Current_Phase_CompleteDate }}</li> -->
           </ul>
         </div>
 
@@ -58,11 +58,11 @@
           <h3>Estimated Project Budget</h3>
           <ul>
             <li>
-              Total: ${{ project.Project_Budget }}
+              Total: {{ currency(project.Project_Budget) }}
               <ul>
-                <li v-if="project.DesignBudget">Design: ${{ project.DesignBudget }}</li>
-                <li v-if="project.PlanningBudget">Land Acquisition: ${{ project.PlanningBudget }} </li>
-                <li v-if="project.Constr_Budget">Construction: ${{ project.Constr_Budget }}</li>
+                <li v-if="project.DesignBudget">Design: {{ currency(project.DesignBudget) }}</li>
+                <li v-if="project.PlanningBudget">Land Acquisition: {{ currency(project.PlanningBudget) }}</li>
+                <li v-if="project.Constr_Budget">Construction: {{ currency(project.Constr_Budget) }}</li>
               </ul>
             </li>
           </ul>
@@ -84,15 +84,14 @@
       </div>
 
       <h4>Questions?</h4>
-      For more information about this please contact Public Works at (813) 635-5400 or email ...
-
+      For more information about this project please contact public Works at (813) 635-5400 or visit <a href="http://hcflgov.net/atyourservice" target="_blank">At Your Service</a>
       <hr>
 
       <div class="d-flex justify-content-end align-items-end">
         <small class="">Current as of <strong>{{ new Date().toLocaleDateString() }}</strong></small>
       </div>
 
-      <div class="my-3 p-3 bg-dark text-light d-print-none">
+      <div v-if="isDev" class="my-3 p-3 bg-dark text-light d-print-none">
         <details>
           <summary>Development Details</summary>
           <pre class="text-light">{{ project }}</pre>
@@ -122,6 +121,17 @@ export default {
     }).catch(err => console.error(err)).finally(() => {
       this.$store.state.loading = false
     })
+  },
+  methods: {
+    currency (int) {
+      let fixed = (int).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+      return `$${fixed}`
+    }
+  },
+  computed: {
+    isDev () {
+      return (process.env.NODE_ENV !== 'production')
+    }
   }
 }
 </script>

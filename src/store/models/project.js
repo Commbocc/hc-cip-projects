@@ -40,12 +40,27 @@ export default class Project {
     return fetch(`${this.endpoint}/${id}?f=json`).then(res => res.json()).then(json => new Project(json.feature))
   }
 
+  static uniqValuesOfField (field) {
+    return fetch(`${this.endpoint}/query?outFields=${field}&where=1=1&returnDistinctValues=true&returnGeometry=false&f=json`).then(res => res.json()).then(json => {
+      return json.features.map(x => x.attributes[field]).sort()
+    })
+  }
+
   static SearchString (term = '') {
     let expressions = [
       'name',
       'CAST (PLACENUMSL AS VARCHAR)'
     ]
-    return expressions.map(x => `${x} LIKE '%${term}%'`).join(' OR ')
+    let str = expressions.map(x => `${x} LIKE '%${term}%'`).join(' OR ')
+    return `(${str})`
+  }
+
+  static FilterString (str) {
+    let fields = str.split(',')
+    return fields.map(f => {
+      let pair = f.split(':')
+      return `${pair[0]} = '${pair[1]}'`
+    }).join(' AND ')
   }
 
   get path () {
