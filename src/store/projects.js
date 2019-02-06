@@ -7,7 +7,7 @@ export default {
     resultOffset: 0
   },
   actions: {
-    fetchProjects ({ state, commit }, toRoute) {
+    fetchProjects ({ state, commit, getters }, toRoute) {
       commit('setLoading')
 
       // pagination
@@ -21,9 +21,20 @@ export default {
         resultOffset: state.resultOffset
       }
 
+      var whereClause = []
+
       // search
       if (toRoute.q) {
-        queryParams.where = Project.SearchString(toRoute.q)
+        whereClause.push(Project.SearchString(toRoute.q))
+      }
+
+      // field filters
+      if (toRoute.f) {
+        whereClause.push(Project.FilterString(toRoute.f))
+      }
+
+      if (whereClause.length) {
+        queryParams.where = whereClause.join(' AND ')
       }
 
       return Project.All(queryParams).then(response => {
@@ -32,6 +43,9 @@ export default {
       }).catch(err => console.error(err)).then(() => {
         commit('setLoading', false)
       })
+    },
+    uniqValuesOfField ({}, field) {
+      return Project.uniqValuesOfField(field)
     }
   },
   mutations: {
