@@ -18,7 +18,9 @@ export default {
         this.$router.push({
           name: 'Index',
           query: {
-            s: sortStr
+            q: this.$route.query.q,
+            f: this.$route.query.f,
+            s: sortStr,
           }
         })
       })
