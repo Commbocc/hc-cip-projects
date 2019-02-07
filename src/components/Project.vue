@@ -3,11 +3,7 @@
     <div class="container">
 
       <h2 class="mb-0 text-primary font-weight-bold">
-        {{ project.name }}
-        <br>
-        <small class="text-muted">
-          #{{ project.PLACENUMSL }}
-        </small>
+        #{{ project.PLACENUMSL }}
       </h2>
 
       <hr>
@@ -26,7 +22,7 @@
           </div>
 
           <div class="col-md-6">
-            <img :src="project.PhaseGraphic" alt="Current Phase" class="img-fluid my-3">
+            <img v-if="project.PhaseGraphic" :src="project.PhaseGraphic" alt="Current Phase" class="img-fluid my-3">
           </div>
         </div>
 
@@ -135,6 +131,7 @@ export default {
     this.$store.state.loading = true
     Project.Find(this.id).then(project => {
       this.project = project
+      this.$store.commit('setPageTitle', project.name)
     }).catch(err => console.error(err)).finally(() => {
       this.$store.state.loading = false
     })

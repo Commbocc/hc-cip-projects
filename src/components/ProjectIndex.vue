@@ -80,10 +80,14 @@ export default {
   methods: mapActions(['fetchProjects']),
   beforeRouteEnter (to, from, next) {
     // console.log('beforeRouteEnter', to)
-    next(vm => vm.fetchProjects(to.query))
+    next(vm => {
+      vm.$store.commit('setPageTitle')
+      vm.fetchProjects(to.query)
+    })
   },
   beforeRouteUpdate (to, from, next) {
     // console.log('beforeRouteUpdate', to)
+    this.$store.commit('setPageTitle')
     this.fetchProjects(to.query)
     next()
   }

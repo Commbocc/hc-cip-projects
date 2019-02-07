@@ -10,11 +10,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   modules: { projects, pagination, sorting },
   state: {
-    loading: false
+    loading: false,
+    pageTitle: 'Capital Improvement Projects'
   },
   mutations: {
     setLoading (state, data = true) {
       state.loading = data
+    },
+    setPageTitle (state, data = 'Capital Improvement Projects') {
+      state.pageTitle = data
     }
   }
 })
