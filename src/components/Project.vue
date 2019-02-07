@@ -12,13 +12,15 @@
 
       <hr>
 
+      <!-- <img :src="project.PhaseGraphic" alt=""> -->
+
       <!-- facts -->
       <div id="project-facts">
 
         <div class="">
           <h3>Quick Facts</h3>
           <ul>
-            <li>Community Area: {{ project.DESC5 }}</li>
+            <li>Community Area: {{ project.Community }}</li>
             <!-- <li>Length: -</li> -->
             <li>Type: {{ project.Major_Category }} - {{ project.SHORT_DESC }}</li>
             <!-- <li>Schedule: {{ project.Current_Phase_CompleteDate }}</li> -->
@@ -124,6 +126,7 @@ export default {
   },
   methods: {
     currency (int) {
+      int = (int) ? int : 0
       let fixed = (int).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
       return `$${fixed}`
     }

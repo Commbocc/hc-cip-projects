@@ -20,7 +20,8 @@ export default {
       }
 
       var whereClause = [
-        // 'Display IS NOT NULL'
+        // 'Display IS NOT NULL',
+        // 'thumb_url IS NOT NULL'
       ]
 
       // search

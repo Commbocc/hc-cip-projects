@@ -41,7 +41,7 @@
                 {{ project.Current_Phase }}
               </td>
               <td class="small text-muted">
-                {{ project.Commisioner_District }} - {{ project.DESC5 }}
+                {{ project.Commisioner_District }} - {{ project.Community }}
               </td>
             </tr>
           </tbody>

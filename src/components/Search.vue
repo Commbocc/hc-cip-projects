@@ -45,7 +45,7 @@ export default {
       filters: {
         'SHORT_DESC': null,
         'Current_Phase': null,
-        'DESC5': null
+        'Community': null
       }
     }
   },
@@ -70,7 +70,7 @@ export default {
   },
   computed: {
     filterLabels () {
-      return ['Type', 'Phase', 'Area']
+      return ['Type', 'Phase', 'Community']
     },
     filteredStr () {
       return Object.keys(this.filters).filter(k => this.filters[k]).map(k => {

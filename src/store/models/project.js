@@ -13,7 +13,7 @@ export default class Project {
   }
 
   static All (params = {}) {
-    let outFields = "OBJECTID,name,PLACENUMSL,Major_Category,SHORT_DESC,Current_Phase,Commisioner_District,DESC5"
+    let outFields = "OBJECTID,name,PLACENUMSL,Major_Category,SHORT_DESC,Current_Phase,Commisioner_District,DESC5,Community"
 
     let queryParams = Object.assign({
       f: 'json',
@@ -49,9 +49,10 @@ export default class Project {
   static SearchString (term = '') {
     let expressions = [
       'name',
-      'CAST (PLACENUMSL AS VARCHAR)'
+      // 'CAST (PLACENUMSL AS VARCHAR)',
+      'DESC5'
     ]
-    let str = expressions.map(x => `${x} LIKE '%${term}%'`).join(' OR ')
+    let str = expressions.map(x => `'${x}' LIKE '%${term}%'`).join(' OR ')
     return `(${str})`
   }
 
