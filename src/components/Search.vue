@@ -13,7 +13,7 @@
     <section aria-label="Advanced Search" class="bg-light p-2 small">
       <header @click="advSearchOpen = !advSearchOpen" class="py-1" style="cursor: pointer;">
         <h6 class="m-0">
-          <span class="fa" :class="(advSearchOpen) ? 'fa-chevron-down' : 'fa-chevron-right'" aria-label="Toggle"></span>
+          <span class="fa fa-fw" :class="(advSearchOpen) ? 'fa-chevron-down' : 'fa-chevron-right'" aria-label="Toggle"></span>
           Advanced Search
         </h6>
       </header>
