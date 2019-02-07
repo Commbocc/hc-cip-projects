@@ -4,7 +4,7 @@
 
       <form is="Search"></form>
 
-      <div class="table-responsive">
+      <div v-if="hasProjects" class="table-responsive">
         <table class="table table-striped mb-0">
           <thead>
             <tr>
@@ -48,6 +48,15 @@
         </table>
       </div>
 
+      <div v-else class="bg-light text-center text-muted p-5">
+        <p class="h4 font-weight-bold m-0">
+          No Results
+        </p>
+        <p class="m-0">
+          <span class="fas fa-search fa-2x mt-3 " aria-hidden="true"></span>
+        </p>
+      </div>
+
       <nav is="Pagination"></nav>
 
     </div>
@@ -55,16 +64,19 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 import TableHeader from './TableHeader'
 import Pagination from './Pagination'
 import Search from './Search'
 
 export default {
   components: { TableHeader, Pagination, Search },
-  computed: mapState({
-    projects: state => state.projects.index
-  }),
+  computed: {
+    ...mapState({
+      projects: state => state.projects.index
+    }),
+    ...mapGetters(['hasProjects'])
+  },
   methods: mapActions(['fetchProjects']),
   beforeRouteEnter (to, from, next) {
     // console.log('beforeRouteEnter', to)

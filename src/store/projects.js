@@ -2,26 +2,26 @@ import Project from './models/project'
 
 export default {
   state: {
-    index: [],
-    resultRecordCount: 50,
-    resultOffset: 0
+    index: []
   },
   actions: {
-    fetchProjects ({ state, commit, getters }, toRoute) {
+    fetchProjects ({ state, commit, rootState }, toRoute) {
       commit('setLoading')
 
       // pagination
       let pageIndex = toRoute.p || 0
-      commit('setOffset', state.resultRecordCount * pageIndex)
+      commit('setOffset', pageIndex)
 
       // filters
       let queryParams = {
         orderByFields: toRoute.s || 'name ASC',
-        resultRecordCount: state.resultRecordCount,
-        resultOffset: state.resultOffset
+        resultRecordCount: rootState.pagination.resultRecordCount,
+        resultOffset: rootState.pagination.resultOffset
       }
 
-      var whereClause = []
+      var whereClause = [
+        // 'Display IS NOT NULL'
+      ]
 
       // search
       if (toRoute.q) {
@@ -51,12 +51,6 @@ export default {
   mutations: {
     setProjects (state, data) {
       state.index = data
-    },
-    setPerPage (state, data) {
-      state.resultRecordCount = data
-    },
-    setOffset (state, data) {
-      state.resultOffset = data
     }
   },
   getters: {
