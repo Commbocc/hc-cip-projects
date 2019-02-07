@@ -12,33 +12,52 @@
 
       <hr>
 
-      <!-- <img :src="project.PhaseGraphic" alt=""> -->
-
       <!-- facts -->
       <div id="project-facts">
 
-        <div class="">
-          <h3>Quick Facts</h3>
-          <ul>
-            <li>Community Area: {{ project.Community }}</li>
-            <!-- <li>Length: -</li> -->
-            <li>Type: {{ project.Major_Category }} - {{ project.SHORT_DESC }}</li>
-            <!-- <li>Schedule: {{ project.Current_Phase_CompleteDate }}</li> -->
-          </ul>
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h3>Quick Facts</h3>
+            <ul>
+              <li>Location: {{ project.Community }}</li>
+              <li>Project Type: {{ project.SHORT_DESC }}</li>
+              <li>Phase: {{ project.Current_Phase }}</li>
+            </ul>
+          </div>
+
+          <div class="col-md-6">
+            <img :src="project.PhaseGraphic" alt="Current Phase" class="img-fluid my-3">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Schedule</h3>
+            <ul>
+              <li>Project Development Completion: {{ project.CloseoutDate }}</li>
+              <li>Design/Land Acquisition: {{ project.DesignDate }}</li>
+              <li>Procurement for Construction: {{ project.ProcureDate }}</li>
+              <li>Construction: {{ project.Constr_Start }}</li>
+            </ul>
+          </div>
+
+          <div class="col-md-6">
+            <h3>Budget Breakdown</h3>
+            <ul>
+              <li>
+                Total: {{ currency(project.Project_Budget) }}
+                <ul>
+                  <li v-if="project.DesignBudget">Design: {{ currency(project.DesignBudget) }}</li>
+                  <li v-if="project.PlanningBudget">Land Acquisition: {{ currency(project.PlanningBudget) }}</li>
+                  <li v-if="project.Constr_Budget">Construction: {{ currency(project.Constr_Budget) }}</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div class="">
-          <h3>Estimated Project Schedule</h3>
-          <ul>
-            <li>Project Development Completion: {{ project.CloseoutDate }}</li>
-            <li>Design/Land Acquisition: {{ project.DesignDate }}</li>
-            <li>Procurement for Construction: {{ project.ProcureDate }}</li>
-            <li>Construction: {{ project.Constr_Start }}</li>
-          </ul>
-        </div>
-
-        <div class="">
-          <h3>Project Description</h3>
+          <h3>Overview</h3>
           <ul>
             <li v-if="project.DESC1">{{ project.DESC1 }}</li>
             <li v-if="project.DESC2">{{ project.DESC2 }}</li>
@@ -46,47 +65,43 @@
           </ul>
         </div>
 
-        <div class="">
-          <h3>Project Objective</h3>
-          <ul>
-            <li v-if="project.Obj1">{{ project.Obj1 }}</li>
-            <li v-if="project.Obj2">{{ project.Obj2 }}</li>
-            <li v-if="project.Obj3">{{ project.Obj3 }}</li>
-            <li v-if="project.Obj4">{{ project.Obj4 }}</li>
-          </ul>
-        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <h3>Objectives</h3>
+            <ul>
+              <li v-if="project.Obj1">{{ project.Obj1 }}</li>
+              <li v-if="project.Obj2">{{ project.Obj2 }}</li>
+              <li v-if="project.Obj3">{{ project.Obj3 }}</li>
+              <li v-if="project.Obj4">{{ project.Obj4 }}</li>
+            </ul>
 
-        <div class="">
-          <h3>Estimated Project Budget</h3>
-          <ul>
-            <li>
-              Total: {{ currency(project.Project_Budget) }}
+            <div v-if="false" class="">
+              <h3>Project Manager</h3>
               <ul>
-                <li v-if="project.DesignBudget">Design: {{ currency(project.DesignBudget) }}</li>
-                <li v-if="project.PlanningBudget">Land Acquisition: {{ currency(project.PlanningBudget) }}</li>
-                <li v-if="project.Constr_Budget">Construction: {{ currency(project.Constr_Budget) }}</li>
+                <li>Lorem: </li>
+                <li>Lorem: </li>
+                <li>Lorem: </li>
               </ul>
-            </li>
-          </ul>
+            </div>
+
+            <div class="">
+              <h4>Questions?</h4>
+              <p>
+                For more information about this project please contact public Works at (813) 635-5400 or visit <a href="http://hcflgov.net/atyourservice" target="_blank">At Your Service</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <!-- map -->
+            <div class="embed-responsive embed-responsive-16by9 my-3">
+              <div is="ProjMap" :geometry="project.geometry"></div>
+            </div>
+          </div>
         </div>
 
-        <div v-if="false" class="">
-          <h3>Project Manager</h3>
-          <ul>
-            <li>Lorem: </li>
-            <li>Lorem: </li>
-            <li>Lorem: </li>
-          </ul>
-        </div>
       </div>
 
-      <!-- map -->
-      <div class="embed-responsive embed-responsive-16by9 my-5">
-        <div is="ProjMap" :geometry="project.geometry"></div>
-      </div>
-
-      <h4>Questions?</h4>
-      For more information about this project please contact public Works at (813) 635-5400 or visit <a href="http://hcflgov.net/atyourservice" target="_blank">At Your Service</a>
       <hr>
 
       <div class="d-flex justify-content-end align-items-end">

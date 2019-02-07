@@ -65,6 +65,7 @@ export default {
         this.term = null
         Object.keys(this.filters).forEach(k => this.$set(this.filters, k, null))
         this.$el.reset()
+        this.search()
       }
     }
   },

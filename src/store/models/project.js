@@ -22,6 +22,8 @@ export default class Project {
       supportsPagination: true
     }, params)
 
+    // console.log(queryParams.where);
+
     let encodedQueryParams = _.map(queryParams, (v, k) => `${k}=${v}`).join('&')
 
     let url = `${this.endpoint}/query?${encodedQueryParams}`
@@ -47,13 +49,18 @@ export default class Project {
   }
 
   static SearchString (term = '') {
-    let expressions = [
-      'name',
-      // 'CAST (PLACENUMSL AS VARCHAR)',
+    let strExpressions = [
+      'name'
+    ]
+
+    let intExpressions = [
       'DESC5'
     ]
-    let str = expressions.map(x => `'${x}' LIKE '%${term}%'`).join(' OR ')
-    return `(${str})`
+
+    let strs = strExpressions.map(x => `${x} LIKE '%${term}%'`).join(' OR ')
+    let ints = intExpressions.map(x => `${x} = '${term}'`).join(' OR ')
+    let expressions = [strs, ints].join(' OR ')
+    return `(${expressions})`
   }
 
   static FilterString (str) {
