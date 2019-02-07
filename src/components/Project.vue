@@ -30,10 +30,10 @@
           <div class="col-md-6">
             <h3>Schedule</h3>
             <ul>
-              <li>Project Development Completion: {{ project.CloseoutDate }}</li>
-              <li>Design/Land Acquisition: {{ project.DesignDate }}</li>
-              <li>Procurement for Construction: {{ project.ProcureDate }}</li>
-              <li>Construction: {{ project.Constr_Start }}</li>
+              <li>Planning complete: {{ project.PlanningDate }}</li>
+              <li>Design complete: {{ project.DesignDate }}</li>
+              <li>Construction begins: {{ project.Constr_Start }}</li>
+              <li>Construction complete: {{ project.Constr_End }}</li>
             </ul>
           </div>
 
@@ -101,7 +101,7 @@
       <hr>
 
       <div class="d-flex justify-content-end align-items-end">
-        <small class="">Current as of <strong>{{ new Date().toLocaleDateString() }}</strong></small>
+        <small class="">Current as of <strong>{{ new Date(project.EditDate).toLocaleDateString() }}</strong></small>
       </div>
 
       <div v-if="isDev" class="my-3 p-3 bg-dark text-light d-print-none">
