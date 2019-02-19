@@ -20,6 +20,7 @@ export default {
       }
 
       var whereClause = [
+        "Current_Phase <> 'Completed'",
         // 'Display IS NOT NULL',
         // 'thumb_url IS NOT NULL'
       ]

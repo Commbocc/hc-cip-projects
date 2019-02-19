@@ -14,6 +14,9 @@
         <div class="row align-items-center">
           <div class="col-md-6">
             <h3>Quick Facts</h3>
+            <a v-if="project.thumb_url" :href="project.thumb_url" target="_blank">
+              Printable Fact Sheet
+            </a>
             <ul>
               <li>Location: {{ project.Community }}</li>
               <li>Project Type: {{ project.SHORT_DESC }}</li>
