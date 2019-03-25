@@ -19,7 +19,7 @@
       </header>
       <!--  -->
       <aside v-if="advSearchOpen" class="">
-        <div v-for="(v,k,i) in filters">
+        <div v-for="(v,k,i) in filters" :key="i">
           <div is="FieldFilter" v-model="filters[k]" :field="k" :label="filterLabels[i]"></div>
         </div>
 

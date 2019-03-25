@@ -5,7 +5,7 @@
         <a class="page-link" href="#" @click.prevent="prevPage">Previous</a>
       </li>
 
-      <li v-for="(n, i) in pageCount" class="page-item" :class="isActive(i)">
+      <li v-for="(n, i) in pageCount" :key="i" class="page-item" :class="isActive(i)">
         <a class="page-link" href="#" @click.prevent="goTo(i)">{{ n }}</a>
       </li>
 

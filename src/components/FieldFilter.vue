@@ -3,7 +3,7 @@
     <label class="mr-sm-1 mb-1" for="">{{ label }}</label>
     <select class="form-control form-control-sm mr-sm-2" :value="value" @change="$emit('input', $event.target.value)">
       <option :value="null">-</option>
-      <option v-for="val in uniqValues" :value="val">{{ val }}</option>
+      <option v-for="(val, i) in uniqValues" :key="i" :value="val">{{ val }}</option>
     </select>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
       this.uniqValues = data
     }).then(() => {
       if (this.$route.query.f) {
-        let fields = this.$route.query.f.split(',').map(f => {
+        this.$route.query.f.split(',').forEach(f => {
           let pair = f.split(':')
           if (pair[0] == this.field) {
             this.$emit('input', pair[1])

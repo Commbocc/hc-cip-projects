@@ -23,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="project in projects">
+            <tr v-for="(project, i) in projects" :key="i">
               <td>
                 <router-link :to="project.path">
                   {{ project.name }}
