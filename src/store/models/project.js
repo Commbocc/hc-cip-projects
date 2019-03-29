@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import axios from 'axios'
 
 export default class Project {
   constructor (feature) {
@@ -9,57 +10,53 @@ export default class Project {
   }
 
   static get endpoint () {
-    return 'https://services.arcgis.com/apTfC6SUmnNfnxuF/ArcGIS/rest/services/CIP_Points_Final/FeatureServer/0'
+    return 'https://maps.hillsboroughcounty.org/arcgis/rest/services/CIP/CIP_Layers/FeatureServer/2'
+  }
+
+  static get linesEndpoint () {
+    return 'https://maps.hillsboroughcounty.org/arcgis/rest/services/CIP/CIP_Layers/FeatureServer/1'
   }
 
   static All (params = {}) {
-    let outFields = "OBJECTID,name,PLACENUMSL,Major_Category,SHORT_DESC,Current_Phase,Commisioner_District,DESC5,Community"
-
     let queryParams = Object.assign({
       f: 'json',
       where: '1=1',
-      outFields,
+      outFields: '*',
       supportsPagination: true
     }, params)
-
-    // console.log(queryParams.where);
 
     let encodedQueryParams = _.map(queryParams, (v, k) => `${k}=${v}`).join('&')
 
     let url = `${this.endpoint}/query?${encodedQueryParams}`
 
     return new Promise((resolve, reject) => {
-      fetch(url).then(res => res.json()).then(json => {
-        let projects = json.features.map(x => new Project(x))
-        fetch(`${url}&returnCountOnly=true`).then(res => res.json()).then(count => {
-          resolve({ projects, ...count })
+      axios.get(url).then(response => {
+        let projects = response.data.features.map(x => new Project(x))
+        axios.get(`${url}&returnCountOnly=true`).then(count => {
+          resolve({ projects, ...count.data })
         }).catch(err => reject(err))
       }).catch(err => reject(err))
     })
   }
 
   static Find (id) {
-    return fetch(`${this.endpoint}/${id}?f=json`).then(res => res.json()).then(json => new Project(json.feature))
+    return axios.get(`${this.endpoint}/${id}?f=json`).then(response => new Project(response.data.feature))
   }
 
   static uniqValuesOfField (field) {
-    return fetch(`${this.endpoint}/query?outFields=${field}&where=1=1&returnDistinctValues=true&returnGeometry=false&f=json`).then(res => res.json()).then(json => {
-      return json.features.map(x => x.attributes[field]).sort()
+    return axios.get(`${this.endpoint}/query?outFields=${field}&where=1=1&returnDistinctValues=true&returnGeometry=false&f=json`).then(response => {
+      return response.data.features.map(x => x.attributes[field]).sort()
     })
   }
 
   static SearchString (term = '') {
-    let strExpressions = [
-      'name'
+    let fields = [
+      'ProjectName',
+      'CIP_Number'
     ]
 
-    let intExpressions = [
-      'DESC5'
-    ]
+    let expressions = fields.map(x => `${x}+LIKE+'%25${term}%25'`).join('+OR+')
 
-    let strs = strExpressions.map(x => `${x} LIKE '%${term}%'`).join(' OR ')
-    let ints = intExpressions.map(x => `${x} = '${term}'`).join(' OR ')
-    let expressions = [strs, ints].join(' OR ')
     return `(${expressions})`
   }
 

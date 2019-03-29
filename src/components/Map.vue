@@ -13,8 +13,9 @@ export default {
     loadModules([
       'esri/views/MapView',
       'esri/Map',
+      'esri/geometry/Multipoint',
       'esri/Graphic'
-    ]).then(([MapView, Map, Graphic]) => {
+    ]).then(([MapView, Map, Multipoint, Graphic]) => {
 
       var map = new Map({
         basemap: 'gray'
@@ -27,20 +28,34 @@ export default {
         zoom: 10
       })
 
-      var point = {
-        type: 'point', // autocasts as new Point()
-        x: this.geometry.x,
-        y: this.geometry.y,
-        spatialReference: {
-          wkid: 102100,
-          latestWkid: 3857
-        }
-      }
+      console.log(this.geometry.points)
 
-      view.center = point
+      var mp = new Multipoint({
+        points: this.geometry.points,
+        spatialReference: { wkid: 4326 }
+        // spatialReference: {
+        //   wkid: 102100,
+        //   latestWkid: 3857
+        // }
+      })
 
-      view.ui.components = [ "attribution" ]
-      view.on(['mouse-wheel', 'double-click', 'drag'], event => event.stopPropagation())
+      // var point = {
+      //   type: 'point', // autocasts as new Point()
+      //   x: this.geometry.points[0],
+      //   y: this.geometry.points[1],
+      //   // x: this.geometry.x,
+      //   // y: this.geometry.y,
+      //   spatialReference: {
+      //     wkid: 102100,
+      //     latestWkid: 3857
+      //   }
+      // }
+
+      view.center = mp.extent.center
+      // view.center = point
+
+      // view.ui.components = [ "attribution" ]
+      // view.on(['mouse-wheel', 'double-click', 'drag'], event => event.stopPropagation())
 
       // Create a symbol for drawing the point
       var markerSymbol = {
@@ -54,7 +69,7 @@ export default {
 
       // Create a graphic and add the geometry and symbol to it
       var pointGraphic = new Graphic({
-        geometry: point,
+        geometry: this.geometry,
         symbol: markerSymbol
       })
 

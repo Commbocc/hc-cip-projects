@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --formats umd,umd-min --name HcCipProjects",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@hcflgov/vue-html-wrapper": "^2.2.1",
+    "axios": "^0.18.0",
     "esri-loader": "^2.4.0",
     "lodash": "^4.17.11",
     "vue": "^2.6.6",

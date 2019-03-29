@@ -1,6 +1,6 @@
 export default {
   state: {
-    field: 'name',
+    field: 'ProjectName',
     ascending: true
   },
   actions: {

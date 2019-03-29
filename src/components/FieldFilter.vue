@@ -32,7 +32,7 @@ export default {
     }
   },
   methods: mapActions(['uniqValuesOfField']),
-  created () {
+  mounted () {
     this.uniqValuesOfField(this.field).then(data => {
       this.uniqValues = data
     }).then(() => {

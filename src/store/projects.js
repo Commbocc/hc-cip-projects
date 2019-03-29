@@ -5,7 +5,7 @@ export default {
     index: []
   },
   actions: {
-    fetchProjects ({ state, commit, rootState }, toRoute) {
+    fetchProjects ({ commit, rootState }, toRoute) {
       commit('setLoading')
 
       // pagination
@@ -14,15 +14,13 @@ export default {
 
       // filters
       let queryParams = {
-        orderByFields: toRoute.s || 'name ASC',
+        orderByFields: toRoute.s || 'ProjectName+ASC',
         resultRecordCount: rootState.pagination.resultRecordCount,
         resultOffset: rootState.pagination.resultOffset
       }
 
       var whereClause = [
-        "Current_Phase <> 'Completed'",
-        // 'Display IS NOT NULL',
-        // 'thumb_url IS NOT NULL'
+        "Current_Phase<>'Completed'",
       ]
 
       // search
@@ -36,7 +34,7 @@ export default {
       }
 
       if (whereClause.length) {
-        queryParams.where = whereClause.join(' AND ')
+        queryParams.where = whereClause.join('+AND+')
       }
 
       return Project.All(queryParams).then(response => {
@@ -46,7 +44,7 @@ export default {
         commit('setLoading', false)
       })
     },
-    uniqValuesOfField ({}, field) {
+    uniqValuesOfField (context, field) {
       return Project.uniqValuesOfField(field)
     }
   },

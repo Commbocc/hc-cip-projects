@@ -20,7 +20,7 @@ export default {
           query: {
             q: this.$route.query.q,
             f: this.$route.query.f,
-            s: sortStr,
+            s: sortStr
           }
         })
       })

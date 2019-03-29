@@ -1,5 +1,5 @@
 <template lang="html">
-  <nav v-if="showPagination" aria-label="Page navigation example" class="my-3">
+  <nav v-if="showPagination" aria-label="Page navigation example" class="my-3 text-center">
     <ul class="pagination justify-content-center flex-wrap">
       <li class="page-item" :class="prevDisabled">
         <a class="page-link" href="#" @click.prevent="prevPage">Previous</a>
