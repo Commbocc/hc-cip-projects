@@ -1,7 +1,8 @@
 <template lang="html">
   <div class="my-1">
     <label class="mr-sm-1 mb-1" for="">{{ label }}</label>
-    <select v-model="$store.state.filters.fields[field].selected" class="form-control form-control-sm mr-sm-2">
+    <div v-if="loading">Loading Filter... <i class="fas fa-spinner fa-pulse"></i></div>
+    <select v-else v-model="$store.state.filters.fields[field].selected" class="form-control form-control-sm mr-sm-2">
       <option :value="null">-</option>
       <option v-for="(val, i) in values" :key="i">{{ val }}</option>
     </select>
@@ -23,10 +24,12 @@ export default {
     }
   },
   data: () => ({
+    loading: false,
     values: []
   }),
-  created () {
-    this.fetchDistinctValuesOfField(this.field).then(x => this.values = x)
+  mounted () {
+    this.loading = true
+    this.fetchDistinctValuesOfField(this.field).then(x => this.values = x).then(() => this.loading = false)
   },
   methods: mapActions(['fetchDistinctValuesOfField'])
 }

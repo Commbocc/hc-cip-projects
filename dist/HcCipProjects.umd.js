@@ -7980,12 +7980,12 @@ var Searchvue_type_template_id_0bc8bf5f_lang_html_staticRenderFns = [function ()
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.search.js
 var es6_regexp_search = __webpack_require__("386d");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1dcdf57b-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldFilter.vue?vue&type=template&id=17765966&lang=html&
-var FieldFiltervue_type_template_id_17765966_lang_html_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"my-1"},[_c('label',{staticClass:"mr-sm-1 mb-1",attrs:{"for":""}},[_vm._v(_vm._s(_vm.label))]),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.state.filters.fields[_vm.field].selected),expression:"$store.state.filters.fields[field].selected"}],staticClass:"form-control form-control-sm mr-sm-2",on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.$set(_vm.$store.state.filters.fields[_vm.field], "selected", $event.target.multiple ? $$selectedVal : $$selectedVal[0])}}},[_c('option',{domProps:{"value":null}},[_vm._v("-")]),_vm._l((_vm.values),function(val,i){return _c('option',{key:i},[_vm._v(_vm._s(val))])})],2)])}
-var FieldFiltervue_type_template_id_17765966_lang_html_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1dcdf57b-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldFilter.vue?vue&type=template&id=389f3a68&lang=html&
+var FieldFiltervue_type_template_id_389f3a68_lang_html_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"my-1"},[_c('label',{staticClass:"mr-sm-1 mb-1",attrs:{"for":""}},[_vm._v(_vm._s(_vm.label))]),(_vm.loading)?_c('div',[_vm._v("Loading Filter... "),_c('i',{staticClass:"fas fa-spinner fa-pulse"})]):_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.state.filters.fields[_vm.field].selected),expression:"$store.state.filters.fields[field].selected"}],staticClass:"form-control form-control-sm mr-sm-2",on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.$set(_vm.$store.state.filters.fields[_vm.field], "selected", $event.target.multiple ? $$selectedVal : $$selectedVal[0])}}},[_c('option',{domProps:{"value":null}},[_vm._v("-")]),_vm._l((_vm.values),function(val,i){return _c('option',{key:i},[_vm._v(_vm._s(val))])})],2)])}
+var FieldFiltervue_type_template_id_389f3a68_lang_html_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/FieldFilter.vue?vue&type=template&id=17765966&lang=html&
+// CONCATENATED MODULE: ./src/components/FieldFilter.vue?vue&type=template&id=389f3a68&lang=html&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
 var web_dom_iterable = __webpack_require__("ac6a");
@@ -8010,6 +8010,7 @@ var es6_object_to_string = __webpack_require__("06db");
 //
 //
 //
+//
 
 /* harmony default export */ var FieldFiltervue_type_script_lang_js_ = ({
   props: {
@@ -8024,14 +8025,18 @@ var es6_object_to_string = __webpack_require__("06db");
   },
   data: function data() {
     return {
+      loading: false,
       values: []
     };
   },
-  created: function created() {
+  mounted: function mounted() {
     var _this = this;
 
+    this.loading = true;
     this.fetchDistinctValuesOfField(this.field).then(function (x) {
       return _this.values = x;
+    }).then(function () {
+      return _this.loading = false;
     });
   },
   methods: mapActions(['fetchDistinctValuesOfField'])
@@ -8048,8 +8053,8 @@ var es6_object_to_string = __webpack_require__("06db");
 
 var FieldFilter_component = normalizeComponent(
   components_FieldFiltervue_type_script_lang_js_,
-  FieldFiltervue_type_template_id_17765966_lang_html_render,
-  FieldFiltervue_type_template_id_17765966_lang_html_staticRenderFns,
+  FieldFiltervue_type_template_id_389f3a68_lang_html_render,
+  FieldFiltervue_type_template_id_389f3a68_lang_html_staticRenderFns,
   false,
   null,
   null,
