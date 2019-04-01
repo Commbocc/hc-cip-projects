@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import ProjectIndex from '../views/ProjectIndex'
+import Project from '../views/Project'
+
 // import store from '../store'
-// import Hello from '../components/Hello'
-import ProjectIndex from '../components/ProjectIndex'
-import Project from '../components/Project'
 
 Vue.use(VueRouter)
 

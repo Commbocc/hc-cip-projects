@@ -1,9 +1,9 @@
 <template lang="html">
-  <div class="mb-1 mt-1">
+  <div class="my-1">
     <label class="mr-sm-1 mb-1" for="">{{ label }}</label>
-    <select class="form-control form-control-sm mr-sm-2" :value="value" @change="$emit('input', $event.target.value)">
+    <select v-model="$store.state.filters.fields[field].selected" class="form-control form-control-sm mr-sm-2">
       <option :value="null">-</option>
-      <option v-for="val in uniqValues" :value="val">{{ val }}</option>
+      <option v-for="(val, i) in values" :key="i">{{ val }}</option>
     </select>
   </div>
 </template>
@@ -20,31 +20,14 @@ export default {
     label: {
       type: String,
       required: true
-    },
-    value: {
-      type: String
     }
   },
-  data () {
-    return {
-      uniqValues: [],
-      selected: null
-    }
-  },
-  methods: mapActions(['uniqValuesOfField']),
+  data: () => ({
+    values: []
+  }),
   created () {
-    this.uniqValuesOfField(this.field).then(data => {
-      this.uniqValues = data
-    }).then(() => {
-      if (this.$route.query.f) {
-        let fields = this.$route.query.f.split(',').map(f => {
-          let pair = f.split(':')
-          if (pair[0] == this.field) {
-            this.$emit('input', pair[1])
-          }
-        })
-      }
-    })
-  }
+    this.fetchDistinctValuesOfField(this.field).then(x => this.values = x)
+  },
+  methods: mapActions(['fetchDistinctValuesOfField'])
 }
 </script>

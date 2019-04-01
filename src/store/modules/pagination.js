@@ -4,6 +4,12 @@ export default {
     resultRecordCount: 50,
     resultOffset: 0
   },
+  actions: {
+    goToPage ({ commit, dispatch }, pageIndex) {
+      commit('setOffset', pageIndex)
+      dispatch('fetchProjects')
+    }
+  },
   mutations: {
     setCount (state, data) {
       state.count = data

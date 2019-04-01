@@ -1,6 +1,6 @@
 <template lang="html">
   <th>
-    <a href="#" @click.prevent="sortBy" class="text-secondary">
+    <a href="#" @click.prevent="setSortOrder(field)" class="text-secondary">
       <slot></slot>
       <small v-if="activeField" class="fas text-info" :class="chevronClass"></small>
     </a>
@@ -11,21 +11,7 @@
 import { mapActions, mapState } from 'vuex'
 
 export default {
-  methods: {
-    ...mapActions(['setSortOrder']),
-    sortBy () {
-      this.setSortOrder(this.field).then(sortStr => {
-        this.$router.push({
-          name: 'Index',
-          query: {
-            q: this.$route.query.q,
-            f: this.$route.query.f,
-            s: sortStr,
-          }
-        })
-      })
-    }
-  },
+  methods: mapActions(['setSortOrder']),
   computed: {
     ...mapState({
       sortField: state => state.sorting.field,

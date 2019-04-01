@@ -1,14 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import projects from './projects'
-import pagination from './pagination'
-import sorting from './sorting'
+import * as modules from './modules'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: { projects, pagination, sorting },
+  modules: { ...modules },
   state: {
     loading: false,
     pageTitle: 'Capital Improvement Projects'
