@@ -4,10 +4,10 @@ export default {
     ascending: true
   },
   actions: {
-    setSortOrder ({state, commit, getters}, field) {
+    setSortOrder ({state, commit, dispatch}, field) {
       commit('setSortAscending', (field == state.field) ? !state.ascending : true)
       commit('setSortField', field)
-      return getters.orderByFields
+      dispatch('fetchProjects')
     }
   },
   mutations: {

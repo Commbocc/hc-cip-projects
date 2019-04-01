@@ -47,11 +47,11 @@
           <h3>Budget Breakdown</h3>
           <ul>
             <li>
-              Total: {{ currency(project.Project_Budget) }}
+              Total: {{ project.currency('Project_Budget') }}
               <ul>
-                <li v-if="project.DesignBudget">Design: {{ currency(project.DesignBudget) }}</li>
-                <li v-if="project.PlanningBudget">Land Acquisition: {{ currency(project.PlanningBudget) }}</li>
-                <li v-if="project.Constr_Budget">Construction: {{ currency(project.Constr_Budget) }}</li>
+                <li v-if="project.DesignBudget">Design: {{ project.currency('DesignBudget') }}</li>
+                <li v-if="project.PlanningBudget">Land Acquisition: {{ project.currency('PlanningBudget') }}</li>
+                <li v-if="project.Constr_Budget">Construction: {{ project.currency('Constr_Budget') }}</li>
               </ul>
             </li>
           </ul>
@@ -113,33 +113,23 @@
 </template>
 
 <script>
-import Project from '../store/models/project'
-import ProjMap from '../components/Map'
+import { mapState, mapActions } from 'vuex'
+// import Project from '../store/models/project'
+// import ProjMap from '../components/Map'
 
 export default {
   props: ['id'],
-  components: { ProjMap },
-  data () {
-    return {
-      project: null
-    }
-  },
+  // components: { ProjMap },
   created () {
-    this.$store.state.loading = true
-    Project.Find(this.id).then(project => {
-      this.project = project
-      this.$store.commit('setPageTitle', project.ProjectName)
-    }).catch(err => console.error(err)).finally(() => {
-      this.$store.state.loading = false
+    this.fetchProject(this.id).then(() => {
+      this.$store.commit('setPageTitle', this.project.ProjectName)
     })
   },
-  methods: {
-    currency (int = 0) {
-      let fixed = (int).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
-      return `$${fixed}`
-    }
-  },
+  methods: mapActions(['fetchProject']),
   computed: {
+    ...mapState({
+      project: state => state.projects.active
+    }),
     isDev () {
       return (process.env.NODE_ENV !== 'production')
     }

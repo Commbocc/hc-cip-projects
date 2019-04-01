@@ -1,10 +1,10 @@
 <template>
   <div class="">
 
-    <nav aria-label="breadcrumb" class="bg-dark">
-      <ol class="breadcrumb bg-dark">
+    <nav aria-label="breadcrumb" class="bg-white">
+      <ol class="breadcrumb bg-white">
         <li v-if="!isIndex" class="breadcrumb-item">
-          <router-link to="/" class="text-white">
+          <router-link to="/" class="">
             Capital Improvement Projects
           </router-link>
         </li>

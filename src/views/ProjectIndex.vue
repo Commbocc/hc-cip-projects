@@ -16,8 +16,8 @@
             <th is="TableHeader" field="Current_Phase">
               Phase
             </th>
-            <th is="TableHeader" field="Commisioner_District">
-              District
+            <th is="TableHeader" field="Community">
+              Community
             </th>
           </tr>
         </thead>
@@ -40,7 +40,7 @@
               {{ project.Current_Phase }}
             </td>
             <td class="small text-muted">
-              {{ project.Commisioner_District }} - {{ project.Community }}
+              {{ project.Community }} - {{ project.Commisioner_District }}
             </td>
           </tr>
         </tbody>
@@ -69,25 +69,16 @@ import Search from '../components/Search'
 
 export default {
   components: { TableHeader, Pagination, Search },
+  methods: mapActions(['fetchProjects']),
   computed: {
     ...mapState({
       projects: state => state.projects.index
     }),
     ...mapGetters(['hasProjects'])
   },
-  methods: mapActions(['fetchProjects']),
-  beforeRouteEnter (to, from, next) {
-    // console.log('beforeRouteEnter', to)
-    next(vm => {
-      vm.$store.commit('setPageTitle')
-      vm.fetchProjects(to.query)
-    })
-  },
-  beforeRouteUpdate (to, from, next) {
-    // console.log('beforeRouteUpdate', to)
+  mounted () {
     this.$store.commit('setPageTitle')
-    this.fetchProjects(to.query)
-    next()
+    this.fetchProjects()
   }
 }
 </script>

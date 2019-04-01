@@ -1,85 +1,61 @@
 <template lang="html">
-  <form @submit.prevent="search" class="mb-3">
+  <form @submit.prevent="fetchProjects(true)" @reset.prevent="reset" class="mb-3">
 
     <div class="input-group mb-3">
       <label class="sr-only" for="searchTerm">Search Projects</label>
-      <input v-model="term" type="text" id="searchTerm" class="form-control" placeholder="Search Projects" aria-label="Search Projects">
+      <input v-model="$store.state.search.term" type="text" id="searchTerm" class="form-control" placeholder="Search Projects" aria-label="Search Projects">
       <div class="input-group-append input-group-btn">
         <button class="btn btn-secondary" type="submit">Search</button>
       </div>
     </div>
 
     <!-- filters -->
-    <section aria-label="Advanced Search" class="bg-white p-2 small">
-      <div @click="advSearchOpen = !advSearchOpen" class="py-1" style="cursor: pointer;">
-        <h6 class="m-0">
-          <span class="fa fa-fw" :class="(advSearchOpen) ? 'fa-chevron-down' : 'fa-chevron-right'" aria-label="Toggle"></span>
-          Advanced Search
-        </h6>
-      </div>
-      <!--  -->
-      <div v-if="advSearchOpen" class="">
-        <div v-for="(v,k,i) in filters" :key="i">
-          <div is="FieldFilter" v-model="filters[k]" :field="k" :label="filterLabels[i]"></div>
-        </div>
+    <div aria-label="Advanced Search" class="bg-white small">
+      <a @click.prevent="toggleSearchDrawer" href="#" class="p-2 h6 text-secondary text-decoration-none d-block">
+        <span class="fa fa-fw" :class="(searchDrawer) ? 'fa-chevron-down' : 'fa-chevron-right'" aria-label="Toggle"></span>
+        Advanced Search
+      </a>
 
+      <div v-show="searchDrawer" class="p-2">
+
+        <div v-for="(v,k,i) in filterFields" is="FieldFilter" :key="i" :field="k" :label="v.label"></div>
+
+        <!-- actions -->
         <div class="text-right">
-          <button @click.prevent="reset" type="reset" class="btn btn-warning btn-sm mt-2">Reset</button>
-          <button @click.prevent="search" type="submit" class="btn btn-secondary btn-sm mt-2">Search</button>
+          <button type="reset" class="btn btn-warning btn-sm mt-2">Reset</button>
+          <button type="submit" class="btn btn-secondary btn-sm mt-2">Search</button>
         </div>
       </div>
-    </section>
+    </div>
 
   </form>
 </template>
 
 <script>
+import { mapState, mapActions, mapMutations } from 'vuex'
 import FieldFilter from './FieldFilter'
 
 export default {
   components: { FieldFilter },
-  data () {
-    return {
-      advSearchOpen: (this.$route.query.f) ? true : false,
-      term: this.$route.query.q,
-      filters: {
-        'Project_Type': null,
-        'Major_Category': null,
-        'Current_Phase': null,
-        'Community': null
-      }
-    }
-  },
+  computed: mapState({
+    filterFields: state => state.filters.fields,
+    searchTerm: state => state.search.term,
+    searchDrawer: state => state.search.drawer
+  }),
   methods: {
-    search () {
-      this.$router.replace({
-        name: 'Index',
-        query: {
-          q: this.term,
-          f: this.filteredStr,
-          // t: Date.now()
-        }
-      })
-    },
+    ...mapActions(['fetchProjects']),
+    ...mapMutations([
+      'toggleSearchDrawer',
+      'resetSearch',
+      'resetFilters'
+    ]),
     reset () {
       if (confirm('Are you sure?')) {
-        this.term = null
-        Object.keys(this.filters).forEach(k => this.$set(this.filters, k, null))
+        this.resetSearch()
+        this.resetFilters()
         this.$el.reset()
-        this.search()
+        this.fetchProjects(true)
       }
-    }
-  },
-  computed: {
-    filterLabels () {
-      return ['Type', 'Category', 'Phase', 'Community']
-    },
-    filteredStr () {
-      return Object.keys(this.filters).filter(k => this.filters[k]).map(k => {
-        if (this.filters[k]) {
-          return `${k}:${this.filters[k]}`
-        }
-      }).join(',')
     }
   }
 }
