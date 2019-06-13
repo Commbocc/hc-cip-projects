@@ -96,10 +96,12 @@
 
     </div>
 
+    <p class="small font-italic">Note: The cost and schedule data shown here are the County's current best estimates and are subject to frequent change. Changes (if any) are updated once a month.</p>
+
     <hr>
 
     <div class="d-flex justify-content-end align-items-end">
-      <small class="">Current as of <strong>{{ new Date(project.EditDate).toLocaleDateString() }}</strong></small>
+      <small class="">Current as of <strong>{{ new Date(project.last_edited_date).toLocaleDateString() }}</strong></small>
     </div>
 
     <div v-if="isDev" class="my-3 p-3 bg-dark text-light d-print-none">

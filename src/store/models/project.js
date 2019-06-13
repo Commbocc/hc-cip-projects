@@ -7,7 +7,9 @@ export default class Project {
   }
 
   currency (field) {
-    let fixed = (this[field]).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+    console.log(this[field]);
+    // let fixed = (this[field]).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+    let fixed = (this[field]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     return `$${fixed}`
   }
 
