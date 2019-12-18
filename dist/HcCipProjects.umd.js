@@ -671,6 +671,13 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "1fc2":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "214f":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1435,14 +1442,14 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 /***/ }),
 
-/***/ "33bf":
+/***/ "353d":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_main_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("83cc");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_main_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_main_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_main_css_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("1fc2");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_main_css_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_main_css_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_main_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_main_css_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -2748,13 +2755,6 @@ module.exports = Object.is || function is(x, y) {
   return x === y ? x !== 0 || 1 / x === 1 / y : x != x && y != y;
 };
 
-
-/***/ }),
-
-/***/ "83cc":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -4217,12 +4217,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1dcdf57b-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/App.vue?vue&type=template&id=4dc99bda&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1dcdf57b-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/App.vue?vue&type=template&id=20bc1496&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{},[_c('nav',{staticClass:"bg-white",attrs:{"aria-label":"breadcrumb"}},[_c('ol',{staticClass:"breadcrumb bg-white"},[(!_vm.isIndex)?_c('li',{staticClass:"breadcrumb-item"},[_c('router-link',{attrs:{"to":"/"}},[_vm._v("\n          Capital Improvement Projects\n        ")])],1):_vm._e(),_c('li',{staticClass:"breadcrumb-item active",attrs:{"aria-current":"page"}},[_vm._v(_vm._s(_vm.$store.state.pageTitle))])])]),(_vm.$store.state.loading)?_c('div',{staticClass:"py-5"},[_vm._m(0)]):_vm._e(),_c('router-view',{directives:[{name:"show",rawName:"v-show",value:(!_vm.$store.state.loading),expression:"!$store.state.loading"}],key:_vm.$route.fullPath})],1)}
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container"},[_c('div',{staticClass:"h1 text-center text-secondary py-5"},[_vm._v("\n        Loading "),_c('i',{staticClass:"fas fa-spinner fa-pulse"})])])}]
 
 
-// CONCATENATED MODULE: ./src/App.vue?vue&type=template&id=4dc99bda&
+// CONCATENATED MODULE: ./src/App.vue?vue&type=template&id=20bc1496&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
 var es6_function_name = __webpack_require__("7f7f");
@@ -8302,12 +8302,12 @@ var ProjectIndex_component = normalizeComponent(
 )
 
 /* harmony default export */ var ProjectIndex = (ProjectIndex_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1dcdf57b-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/Project.vue?vue&type=template&id=60d23474&lang=html&
-var Projectvue_type_template_id_60d23474_lang_html_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.project)?_c('div',[_c('h1',{staticClass:"mb-0 font-weight-bold"},[_vm._v("\n    "+_vm._s(_vm.project.ProjectName)+"\n  ")]),_c('h2',{staticClass:"mb-0 text-primary font-weight-bold"},[_vm._v("\n    #"+_vm._s(_vm.project.CIP_Number)+"\n  ")]),_c('hr'),_c('div',{attrs:{"id":"project-facts"}},[_c('div',{staticClass:"row align-items-center"},[_c('div',{staticClass:"col-md-6"},[_c('h3',[_vm._v("Quick Facts")]),(_vm.project.thumb_url)?_c('a',{attrs:{"href":_vm.project.thumb_url,"target":"_blank"}},[_vm._v("\n          Printable Fact Sheet\n        ")]):_vm._e(),_c('ul',[_c('li',[_vm._v("Location: "+_vm._s(_vm.project.Community))]),_c('li',[_vm._v("Project Type: "+_vm._s(_vm.project.Project_Type))]),_c('li',[_vm._v("Phase: "+_vm._s(_vm.project.Current_Phase))])])]),_c('div',{staticClass:"col-md-6"},[(_vm.project.PhaseGraphic)?_c('img',{staticClass:"img-fluid img-responsive my-3",attrs:{"src":_vm.project.PhaseGraphic,"alt":("Current Project Phase: " + (_vm.project.Current_Phase))}}):_vm._e()])]),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-6"},[_c('h3',[_vm._v("Schedule")]),_c('ul',[_c('li',[_vm._v("Planning complete: "+_vm._s(_vm.project.PlanningDate))]),_c('li',[_vm._v("Design complete: "+_vm._s(_vm.project.DesignDate))]),_c('li',[_vm._v("Construction begins: "+_vm._s(_vm.project.Constr_Start))]),_c('li',[_vm._v("Construction complete: "+_vm._s(_vm.project.Constr_End))])])]),_c('div',{staticClass:"col-md-6"},[_c('h3',[_vm._v("Budget Breakdown")]),_c('ul',[_c('li',[_vm._v("\n            Total: "+_vm._s(_vm.project.currency('Project_Budget'))+"\n            "),_c('ul',[(_vm.project.DesignBudget)?_c('li',[_vm._v("Design: "+_vm._s(_vm.project.currency('DesignBudget')))]):_vm._e(),(_vm.project.PlanningBudget)?_c('li',[_vm._v("Land Acquisition: "+_vm._s(_vm.project.currency('PlanningBudget')))]):_vm._e(),(_vm.project.Constr_Budget)?_c('li',[_vm._v("Construction: "+_vm._s(_vm.project.currency('Constr_Budget')))]):_vm._e()])])])])]),_c('div',{},[_c('h3',[_vm._v("Overview")]),_c('ul',[(_vm.project.DESC1)?_c('li',[_vm._v(_vm._s(_vm.project.DESC1))]):_vm._e(),(_vm.project.DESC2)?_c('li',[_vm._v(_vm._s(_vm.project.DESC2))]):_vm._e()])]),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-12"},[_c('h3',[_vm._v("Objectives")]),_c('ul',[(_vm.project.Obj1)?_c('li',[_vm._v(_vm._s(_vm.project.Obj1))]):_vm._e(),(_vm.project.Obj2)?_c('li',[_vm._v(_vm._s(_vm.project.Obj2))]):_vm._e(),(_vm.project.Obj3)?_c('li',[_vm._v(_vm._s(_vm.project.Obj3))]):_vm._e(),(_vm.project.Obj4)?_c('li',[_vm._v(_vm._s(_vm.project.Obj4))]):_vm._e()]),_vm._m(0),(false)?undefined:_vm._e()])])]),_c('p',{staticClass:"small font-italic"},[_vm._v("Note: The cost and schedule data shown here are the County's current best estimates and are subject to frequent change. Changes (if any) are updated once a month.")]),_c('hr'),_c('div',{staticClass:"d-flex justify-content-end align-items-end"},[_c('small',{},[_vm._v("Current as of "),_c('strong',[_vm._v(_vm._s(new Date(_vm.project.last_edited_date).toLocaleDateString()))])])]),(_vm.isDev)?_c('div',{staticClass:"my-3 p-3 bg-dark text-light d-print-none"},[_c('details',[_c('summary',[_vm._v("Development Details")]),_c('pre',{staticClass:"text-light"},[_vm._v(_vm._s(_vm.project))])])]):_vm._e()]):_vm._e()}
-var Projectvue_type_template_id_60d23474_lang_html_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{},[_c('h4',[_vm._v("Questions?")]),_c('p',[_vm._v("\n            For more information about this project please contact (813) 635-5400 or visit "),_c('a',{attrs:{"href":"https://hcflgov.net/atyourservice","target":"_blank"}},[_vm._v("At Your Service")])])])}]
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1dcdf57b-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/Project.vue?vue&type=template&id=e4795372&lang=html&
+var Projectvue_type_template_id_e4795372_lang_html_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.project)?_c('div',[_c('h1',{staticClass:"mb-0 font-weight-bold"},[_vm._v("\n    "+_vm._s(_vm.project.ProjectName)+"\n  ")]),_c('h2',{staticClass:"mb-0 text-primary font-weight-bold"},[_vm._v("\n    #"+_vm._s(_vm.project.CIP_Number)+"\n  ")]),_c('hr'),_c('div',{attrs:{"id":"project-facts"}},[_c('div',{staticClass:"row align-items-center"},[_c('div',{staticClass:"col-md-6"},[_c('h3',[_vm._v("Quick Facts")]),(_vm.project.thumb_url)?_c('a',{attrs:{"href":_vm.project.thumb_url,"target":"_blank"}},[_vm._v("\n          Printable Fact Sheet\n        ")]):_vm._e(),_c('ul',[_c('li',[_vm._v("Location: "+_vm._s(_vm.project.Community))]),_c('li',[_vm._v("Project Type: "+_vm._s(_vm.project.Project_Type))]),_c('li',[_vm._v("Phase: "+_vm._s(_vm.project.Current_Phase))])])]),_c('div',{staticClass:"col-md-6"},[(_vm.project.PhaseGraphic)?_c('img',{staticClass:"img-fluid img-responsive my-3",attrs:{"src":_vm.project.PhaseGraphic,"alt":("Current Project Phase: " + (_vm.project.Current_Phase))}}):_vm._e()])]),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-6"},[_c('h3',[_vm._v("Schedule")]),_c('ul',[_c('li',[_vm._v("Planning complete: "+_vm._s(_vm.project.PlanningDate))]),_c('li',[_vm._v("Design complete: "+_vm._s(_vm.project.DesignDate))]),_c('li',[_vm._v("Construction begins: "+_vm._s(_vm.project.Constr_Start))]),_c('li',[_vm._v("Construction complete: "+_vm._s(_vm.project.Constr_End))])])]),_c('div',{staticClass:"col-md-6"},[_c('h3',[_vm._v("Budget Breakdown")]),_c('ul',[_c('li',[_vm._v("\n            Total: "+_vm._s(_vm.project.currency('Project_Budget'))+"\n            "),_c('ul',[(_vm.project.PlanningBudget)?_c('li',[_vm._v("Planning: "+_vm._s(_vm.project.currency('PlanningBudget')))]):_vm._e(),(_vm.project.DesignBudget)?_c('li',[_vm._v("Design and Land: "+_vm._s(_vm.project.currency('DesignBudget')))]):_vm._e(),(_vm.project.Constr_Budget)?_c('li',[_vm._v("Construction: "+_vm._s(_vm.project.currency('Constr_Budget')))]):_vm._e()])])])])]),_c('div',{},[_c('h3',[_vm._v("Overview")]),_c('ul',[(_vm.project.DESC1)?_c('li',[_vm._v(_vm._s(_vm.project.DESC1))]):_vm._e(),(_vm.project.DESC2)?_c('li',[_vm._v(_vm._s(_vm.project.DESC2))]):_vm._e()])]),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-12"},[_c('h3',[_vm._v("Objectives")]),_c('ul',[(_vm.project.Obj1)?_c('li',[_vm._v(_vm._s(_vm.project.Obj1))]):_vm._e(),(_vm.project.Obj2)?_c('li',[_vm._v(_vm._s(_vm.project.Obj2))]):_vm._e(),(_vm.project.Obj3)?_c('li',[_vm._v(_vm._s(_vm.project.Obj3))]):_vm._e(),(_vm.project.Obj4)?_c('li',[_vm._v(_vm._s(_vm.project.Obj4))]):_vm._e()]),_vm._m(0),(false)?undefined:_vm._e()])])]),_c('p',{staticClass:"small font-italic"},[_vm._v("Note: The cost and schedule data shown here are the County's current best estimates and are subject to frequent change. Changes (if any) are updated once a month.")]),_c('hr'),_c('div',{staticClass:"d-flex justify-content-end align-items-end"},[_c('small',{},[_vm._v("Current as of "),_c('strong',[_vm._v(_vm._s(new Date(_vm.project.last_edited_date).toLocaleDateString()))])])]),(_vm.isDev)?_c('div',{staticClass:"my-3 p-3 bg-dark text-light d-print-none"},[_c('details',[_c('summary',[_vm._v("Development Details")]),_c('pre',{staticClass:"text-light"},[_vm._v(_vm._s(_vm.project))])])]):_vm._e()]):_vm._e()}
+var Projectvue_type_template_id_e4795372_lang_html_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{},[_c('h4',[_vm._v("Questions?")]),_c('p',[_vm._v("\n            For more information about this project please contact (813) 635-5400 or visit "),_c('a',{attrs:{"href":"https://hcflgov.net/atyourservice","target":"_blank"}},[_vm._v("At Your Service")])])])}]
 
 
-// CONCATENATED MODULE: ./src/views/Project.vue?vue&type=template&id=60d23474&lang=html&
+// CONCATENATED MODULE: ./src/views/Project.vue?vue&type=template&id=e4795372&lang=html&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/Project.vue?vue&type=script&lang=js&
 
@@ -8463,8 +8463,8 @@ var Projectvue_type_template_id_60d23474_lang_html_staticRenderFns = [function (
 
 var Project_component = normalizeComponent(
   views_Projectvue_type_script_lang_js_,
-  Projectvue_type_template_id_60d23474_lang_html_render,
-  Projectvue_type_template_id_60d23474_lang_html_staticRenderFns,
+  Projectvue_type_template_id_e4795372_lang_html_render,
+  Projectvue_type_template_id_e4795372_lang_html_staticRenderFns,
   false,
   null,
   null,
@@ -8973,8 +8973,8 @@ external_commonjs_vue_commonjs2_vue_root_Vue_default.a.use(vuex_esm);
 });
 // CONCATENATED MODULE: ./src/App.vue?vue&type=script&lang=js&
  /* harmony default export */ var src_Appvue_type_script_lang_js_ = (Appvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./src/assets/main.scss?vue&type=style&index=0&lang=scss&
-var mainvue_type_style_index_0_lang_scss_ = __webpack_require__("33bf");
+// EXTERNAL MODULE: ./src/assets/main.css?vue&type=style&index=0&lang=css&
+var mainvue_type_style_index_0_lang_css_ = __webpack_require__("353d");
 
 // CONCATENATED MODULE: ./src/App.vue
 
