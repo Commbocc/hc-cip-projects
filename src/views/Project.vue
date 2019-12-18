@@ -49,8 +49,8 @@
             <li>
               Total: {{ project.currency('Project_Budget') }}
               <ul>
-                <li v-if="project.DesignBudget">Design: {{ project.currency('DesignBudget') }}</li>
-                <li v-if="project.PlanningBudget">Land Acquisition: {{ project.currency('PlanningBudget') }}</li>
+                <li v-if="project.PlanningBudget">Planning: {{ project.currency('PlanningBudget') }}</li>
+                <li v-if="project.DesignBudget">Design and Land: {{ project.currency('DesignBudget') }}</li>
                 <li v-if="project.Constr_Budget">Construction: {{ project.currency('Constr_Budget') }}</li>
               </ul>
             </li>
