@@ -29,9 +29,9 @@ onBeforeRouteUpdate(fetchProjects)
       <tbody>
         <tr v-for="project in projects.data">
           <td>
-            <!-- <router-link :to="project.path"> -->
-            {{ project.name }}
-            <!-- </router-link> -->
+            <router-link :to="project.path">
+              {{ project.name }}
+            </router-link>
             <br />
             <small class="text-muted"> #{{ project.cipNumber }} </small>
           </td>

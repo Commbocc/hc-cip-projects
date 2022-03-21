@@ -1,1 +1,3 @@
-<template>Show</template>
+<script setup lang="ts"></script>
+
+<template>Show {{ $route.params.id }}</template>
