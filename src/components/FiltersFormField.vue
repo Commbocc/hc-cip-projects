@@ -1,49 +1,55 @@
 <script setup lang="ts">
-import { reactive } from "vue";
-import { defaultWhereClause, projectsFeatureLayer } from "../lib";
-import { IFilterField, IReactiveFieldValues } from "../lib/types";
+import { reactive } from 'vue'
+import { projectsFeatureLayer } from '../lib/projects'
+import { defaultWhereClause } from '../lib/filters'
 
-const props = defineProps<{ filterField: IFilterField }>();
+interface IReactiveFieldValues {
+  loading: boolean
+  data: any[] | undefined
+}
+
+const props = defineProps<{ field: any }>()
 
 const fieldValues = reactive<IReactiveFieldValues>({
   loading: false,
-  data: null,
-});
+  data: [],
+})
 
-const fetchDistinctValues = async (field: string) => {
-  fieldValues.loading = true;
+const fetchDistinctValues = async () => {
+  fieldValues.loading = true
 
   const params: __esri.QueryProperties = {
-    outFields: [props.filterField.key],
+    outFields: [props.field.esriField],
     returnDistinctValues: true,
     where: defaultWhereClause,
-  };
+  }
 
   try {
-    const { features } = await projectsFeatureLayer.queryFeatures(params);
-    fieldValues.data = features.map((x) => x.attributes[props.filterField.key]);
+    const { features } = await projectsFeatureLayer.queryFeatures(params)
+    fieldValues.data = features?.map((x) => x.attributes[props.field.esriField])
   } catch (error) {
     //
   } finally {
-    fieldValues.loading = false;
+    fieldValues.loading = false
   }
-};
+}
 
-fetchDistinctValues(props.filterField.key);
+fetchDistinctValues()
 </script>
 
 <template>
   <div class="my-1">
-    <label class="mr-sm-1 mb-1" for="">{{ filterField.label }}</label>
+    <label class="mr-sm-1 mb-1 text-capitalize" for="">{{ field.name }}</label>
     <div v-if="fieldValues.loading">
       Loading Filter... <i class="fas fa-spinner fa-pulse"></i>
     </div>
     <select
       v-else
-      v-model="filterField.selectedValue"
       class="form-control form-control-sm mr-sm-2"
+      :name="field.name"
+      :value="field.value"
     >
-      <option :value="null">-</option>
+      <option value="">-</option>
       <option v-for="(val, i) in fieldValues.data">{{ val }}</option>
     </select>
   </div>

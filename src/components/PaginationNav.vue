@@ -1,18 +1,21 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { pagination, showPagination, currentIndex, pageCount } from "../lib";
-import { useRouter } from "vue-router";
+import { computed } from 'vue'
+import { pagination, showPagination, pageCount } from '../lib/pagination'
+import { useRouter } from 'vue-router'
 
-const prevDisabled = computed<boolean>(() => pagination.page === 1);
+const prevDisabled = computed<boolean>(() => pagination.page === 1)
 const nextDisabled = computed<boolean>(
-  () => pagination.page + 1 > pageCount.value,
-);
+  () => pagination.page + 1 > pageCount.value
+)
 
-const router = useRouter();
+const router = useRouter()
 
 const goToPage = (page: number) => {
-  router.push(`/?page=${page}`);
-};
+  const url = new URL(window.location.href)
+  let searchParams = new URLSearchParams(url.search)
+  searchParams.set('page', page.toString())
+  router.push(`/?${searchParams.toString()}`)
+}
 </script>
 
 <template>

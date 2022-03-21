@@ -1,51 +1,44 @@
-import { computed, reactive } from "vue";
-import { IReactiveFilters } from "./types";
+import { computed, reactive, ref } from 'vue'
 
-export const filters = reactive<IReactiveFilters>({
-  searchTerm: "",
-  fields: [
-    {
-      key: "Project_Type",
-      label: "Type",
-      selectedValue: null,
-    },
-    {
-      key: "Major_Category",
-      label: "Category",
-      selectedValue: null,
-    },
-    {
-      key: "Current_Phase",
-      label: "Phase",
-      selectedValue: null,
-    },
-    {
-      key: "Community",
-      label: "Community",
-      selectedValue: null,
-    },
-  ],
-});
+export const searchTerm = ref<string>('')
 
-export const defaultWhereClause = `Current_Phase <> 'Completed'`;
+export enum FILTERABLE_FIELDS {
+  type = 'Project_Type',
+  category = 'Major_Category',
+  phase = 'Current_Phase',
+  community = 'Community',
+}
+
+export const filters = reactive({
+  type: '',
+  category: '',
+  phase: '',
+  community: '',
+})
+
+export const defaultWhereClause = `Current_Phase <> 'Completed'`
 
 export const whereClause = computed(() =>
   [defaultWhereClause, searchClause.value, filterClause.value]
     .filter(Boolean)
-    .join(" AND "),
-);
+    .join(' AND ')
+)
 
 export const searchClause = computed(() =>
-  filters.searchTerm
-    ? ["ProjectName", "CIP_Number"]
-        .map((x) => `${x} LIKE '%${filters.searchTerm}%'`)
-        .join(" OR ")
-    : null,
-);
+  searchTerm.value
+    ? ['ProjectName', 'CIP_Number']
+        .map((x) => `${x} LIKE '%${searchTerm.value}%'`)
+        .join(' OR ')
+    : null
+)
 
 export const filterClause = computed(() => {
-  const expressions = filters.fields.map((field) =>
-    field.selectedValue ? `${field.key} = '${field.selectedValue}'` : null,
-  );
-  return expressions.filter(Boolean).join(" AND ");
-});
+  let expressions: string[] = []
+
+  let key: keyof typeof FILTERABLE_FIELDS
+  for (key in filters) {
+    if (!filters[key]) break
+    expressions.push(`${FILTERABLE_FIELDS[key]} = '${filters[key]}'`)
+  }
+  return expressions.join(' AND ')
+})

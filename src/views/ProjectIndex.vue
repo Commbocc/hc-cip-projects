@@ -1,17 +1,13 @@
 <script setup lang="ts">
-import { projects, fetchProjects, pagination, whereClause } from "../lib";
-import PaginationNav from "../components/PaginationNav.vue";
-import { onBeforeRouteUpdate, useRoute } from "vue-router";
-import FiltersForm from "../components/FiltersForm.vue";
+import { projects, fetchProjects } from '../lib/projects'
+import { onBeforeRouteUpdate, useRoute } from 'vue-router'
+import FiltersForm from '../components/FiltersForm.vue'
+import PaginationNav from '../components/PaginationNav.vue'
 
-onBeforeRouteUpdate(async (to, from) => {
-  await fetchProjects(to, from);
-});
+onBeforeRouteUpdate(fetchProjects)
 </script>
 
 <template>
-  <pre>{{ whereClause }}</pre>
-
   <FiltersForm />
 
   <div v-if="projects.loading" class="text-center">
@@ -20,10 +16,7 @@ onBeforeRouteUpdate(async (to, from) => {
     </div>
   </div>
 
-  <pre v-else>{{ projects }}</pre>
-  <!-- <form is="Search"></form> -->
-
-  <!-- <div v-if="hasProjects" class="table-responsive">
+  <div v-else-if="projects.data?.length" class="table-responsive">
     <table class="table table-striped mb-0">
       <thead>
         <tr>
@@ -34,35 +27,38 @@ onBeforeRouteUpdate(async (to, from) => {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(project, i) in projects" :key="i">
+        <tr v-for="project in projects.data">
           <td>
-            <router-link :to="project.path">
-              {{ project.ProjectName }}
-            </router-link>
+            <!-- <router-link :to="project.path"> -->
+            {{ project.name }}
+            <!-- </router-link> -->
             <br />
-            <small class="text-muted"> #{{ project.CIP_Number }} </small>
+            <small class="text-muted"> #{{ project.cipNumber }} </small>
           </td>
           <td class="small text-muted">
-            {{ project.Project_Type }} -
-            {{ project.Major_Category }}
+            {{ project.projectType }} -
+            {{ project.category }}
           </td>
           <td class="small text-muted">
-            {{ project.Current_Phase }}
+            {{ project.phase }}
           </td>
           <td class="small text-muted">
-            {{ project.Community }} - {{ project.Commisioner_District }}
+            {{ project.community }} -
+            {{ project.district }}
           </td>
         </tr>
       </tbody>
     </table>
-  </div> -->
+  </div>
 
-  <!-- <div v-else class="bg-light text-center text-muted p-5">
+  <div v-else class="bg-light text-center text-muted p-5">
     <p class="h4 font-weight-bold m-0">No Results</p>
     <p class="m-0">
       <span class="fas fa-search fa-2x mt-3" aria-hidden="true"></span>
     </p>
-  </div> -->
+  </div>
+
+  <!-- <pre>{{ projects }}</pre> -->
 
   <PaginationNav />
 </template>
