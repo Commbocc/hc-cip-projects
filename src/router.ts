@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { fetchProjects } from './lib/projects'
+import { fetchProjects, fetchProject } from './lib/projects'
 
 // 1. Define route components.
 // These can be imported from other files
@@ -22,6 +22,7 @@ export const routes = [
     name: 'Show',
     path: '/:id',
     component: ProjectShow,
+    beforeEnter: fetchProject,
   },
 ]
 

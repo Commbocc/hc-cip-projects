@@ -1,5 +1,5 @@
 export default class Project {
-  id: number
+  id: string
   cipNumber: string
   name: string
   projectType: string
@@ -19,16 +19,12 @@ export default class Project {
     this.phase = attributes['Current_Phase']
     this.community = attributes['Community']
     this.district = attributes['Commisioner_District']
+    // this.someMoneyValue = this.currency(attributes['A_Number_Field'])
 
     this.geometry = geometry?.toJSON()
-
-    // for (var k in attributes) {
-    //   this[k] = attributes[k];
-    // }
   }
 
   currency(val: number): string {
-    // let fixed = (this[field]).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
     const fixed = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     return `$${fixed}`
   }

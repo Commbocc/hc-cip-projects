@@ -1,7 +1,7 @@
 import { computed, reactive } from 'vue'
 import FeatureLayer from '@arcgis/core/layers/FeatureLayer'
 import Project from './models/Project'
-import { IReactiveProjects } from './types'
+import { IReactiveProjects, IReactiveSingleProject } from './types'
 import { pagination, resultOffset } from './pagination'
 import { RouteLocationNormalized } from 'vue-router'
 import { filters, searchTerm, whereClause, FILTERABLE_FIELDS } from './filters'
@@ -32,30 +32,27 @@ export async function fetchProjects(
 ): Promise<void> {
   projects.loading = true
 
-  const { page, q, ...rest } = to.query
-  // const { page, q, type, category, phase, community } = to.query
-
-  // pagination
-  pagination.page = page
-    ? parseInt((Array.isArray(page) ? page?.[0] : page) as string)
-    : 1
-
-  // search
-  searchTerm.value = q?.toString() || ''
-
-  // filters
-  let key: keyof typeof FILTERABLE_FIELDS
-  for (key in filters) {
-    filters[key] = rest[key]?.toString() || ''
-  }
-
   try {
+    const { page, q, ...filterQueryParams } = to.query
+
+    // pagination
+    pagination.page = page
+      ? parseInt((Array.isArray(page) ? page?.[0] : page) as string)
+      : 1
+
+    // search
+    searchTerm.value = q?.toString() || ''
+
+    // filters
+    let key: keyof typeof FILTERABLE_FIELDS
+    for (key in filters) {
+      filters[key] = filterQueryParams[key]?.toString() || ''
+    }
+
     const [{ features }, count] = await Promise.all([
       projectsFeatureLayer.queryFeatures(queryParams.value),
       projectsFeatureLayer.queryFeatureCount(queryParams.value),
     ])
-
-    // console.log({ features, count });
 
     pagination.count = count
 
@@ -65,5 +62,36 @@ export async function fetchProjects(
     console.warn(error)
   } finally {
     projects.loading = false
+  }
+}
+
+//
+export const singleProject = reactive<IReactiveSingleProject>({
+  loading: false,
+  data: undefined,
+})
+
+export async function fetchProject(
+  to: RouteLocationNormalized,
+  from: RouteLocationNormalized
+) {
+  singleProject.data = undefined
+  singleProject.loading = true
+
+  try {
+    const { id } = to.params
+
+    const {
+      features: [feature],
+    } = await projectsFeatureLayer.queryFeatures({
+      where: `OBJECTID = '${id}'`,
+      outFields: ['*'],
+    })
+
+    singleProject.data = new Project(feature)
+  } catch (error) {
+    // 404
+  } finally {
+    singleProject.loading = false
   }
 }

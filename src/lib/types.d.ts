@@ -6,6 +6,10 @@ interface IReactiveProjects {
   error: string
   data: Project[] | null
 }
+interface IReactiveSingleProject {
+  loading: boolean
+  data: Project | undefined
+}
 
 type IFilterableFormField = {
   name: string
