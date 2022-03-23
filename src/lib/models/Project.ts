@@ -19,11 +19,11 @@ export default class Project {
   objectiveTwo: string
   objectiveThree: string
   objectiveFour: string
-  lastEditedDate: string
-  projectBudget: string
-  planningBudget: string
-  designBudget: string
-  constructionBudget: string
+  projectBudget?: string
+  planningBudget?: string
+  designBudget?: string
+  constructionBudget?: string
+  lastEditedDate: Date
 
   geometry?: __esri.Geometry
 
@@ -47,19 +47,19 @@ export default class Project {
     this.objectiveTwo = attributes['Obj2']
     this.objectiveThree = attributes['Obj3']
     this.objectiveFour = attributes['Obj4']
-    this.lastEditedDate = attributes['last_edited_date']
     this.phaseGraphic = attributes['PhaseGraphic']
-    this.projectBudget = this.currency(attributes['Project_Budget'])
-    this.planningBudget = this.currency(attributes['PlanningBudget'])
-    this.designBudget = this.currency(attributes['DesignBudget'])
-    this.constructionBudget = this.currency(attributes['Constr_Budget'])
+    this.projectBudget = Project.currency(attributes['Project_Budget'])
+    this.planningBudget = Project.currency(attributes['PlanningBudget'])
+    this.designBudget = Project.currency(attributes['DesignBudget'])
+    this.constructionBudget = Project.currency(attributes['Constr_Budget'])
+    this.lastEditedDate = new Date(attributes['last_edited_date'])
 
     this.geometry = geometry?.toJSON()
   }
 
-  currency(val: number): string {
-    const fixed = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-    return `$${fixed}`
+  static currency(val: number | string | null): string | undefined {
+    const fixed = val?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    return val ? `$${fixed}` : undefined
   }
 
   get path(): string {

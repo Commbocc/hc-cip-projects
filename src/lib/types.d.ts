@@ -1,18 +1,27 @@
-import { FILTERABLE_FIELDS } from './filters'
-import Project from './models/Project'
-
 interface IReactiveProjects {
   loading: boolean
   error: string
-  data: Project[] | null
+  data: import('./models/Project').default[] | null
 }
 interface IReactiveSingleProject {
   loading: boolean
-  data: Project | undefined
+  data: import('./models/Project').default | undefined
 }
 
 type IFilterableFormField = {
   name: string
-  esriField: FILTERABLE_FIELDS
+  esriField: import('./filters').EFilterableFields
   value: string
+}
+
+type TSortableFieldValues = keyof typeof import('./sorting').ESortableFields
+
+interface IReactiveSorting {
+  field: TSortableFieldValues
+  ascending: boolean
+}
+
+interface IReactiveFieldValues {
+  loading: boolean
+  data: any[] | undefined
 }

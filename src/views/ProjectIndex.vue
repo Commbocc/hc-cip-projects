@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { projects, fetchProjects } from '../lib/projects'
-import { onBeforeRouteUpdate, useRoute } from 'vue-router'
+import { onBeforeRouteUpdate } from 'vue-router'
 import FiltersForm from '../components/FiltersForm.vue'
 import PaginationNav from '../components/PaginationNav.vue'
+import TableHeader from '../components/TableHeader.vue'
 
 onBeforeRouteUpdate(fetchProjects)
 </script>
@@ -20,10 +21,10 @@ onBeforeRouteUpdate(fetchProjects)
     <table class="table table-striped mb-0">
       <thead>
         <tr>
-          <th is="TableHeader" field="ProjectName">Project</th>
-          <th is="TableHeader" field="Project_Type">Type</th>
-          <th is="TableHeader" field="Current_Phase">Phase</th>
-          <th is="TableHeader" field="Community">Community</th>
+          <TableHeader field="name">Project</TableHeader>
+          <TableHeader field="type">Type</TableHeader>
+          <TableHeader field="phase">Phase</TableHeader>
+          <TableHeader field="community">Community</TableHeader>
         </tr>
       </thead>
       <tbody>

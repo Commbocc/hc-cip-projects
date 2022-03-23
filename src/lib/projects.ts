@@ -1,10 +1,10 @@
 import { computed, reactive } from 'vue'
 import FeatureLayer from '@arcgis/core/layers/FeatureLayer'
 import Project from './models/Project'
-import { IReactiveProjects, IReactiveSingleProject } from './types'
 import { pagination, resultOffset } from './pagination'
 import { RouteLocationNormalized } from 'vue-router'
-import { filters, searchTerm, whereClause, FILTERABLE_FIELDS } from './filters'
+import { EFilterableFields, filters, searchTerm, whereClause } from './filters'
+import { sortOrderClause } from './sorting'
 
 export const projectsFeatureLayer = new FeatureLayer({
   url: 'https://maps.hillsboroughcounty.org/arcgis/rest/services/CIP/CIP_Layers/FeatureServer/2',
@@ -13,7 +13,7 @@ export const projectsFeatureLayer = new FeatureLayer({
 const queryParams = computed<__esri.QueryProperties>(() => {
   return {
     outFields: ['*'],
-    // orderByFields: getters.orderByFields,
+    orderByFields: sortOrderClause.value,
     where: whereClause.value,
     num: pagination.resultRecordCount,
     start: resultOffset.value,
@@ -26,29 +26,12 @@ export const projects = reactive<IReactiveProjects>({
   data: null,
 })
 
-export async function fetchProjects(
-  to: RouteLocationNormalized,
-  from: RouteLocationNormalized
-): Promise<void> {
+export async function queryFeatures() {
   projects.loading = true
 
+  console.log(queryParams.value)
+
   try {
-    const { page, q, ...filterQueryParams } = to.query
-
-    // pagination
-    pagination.page = page
-      ? parseInt((Array.isArray(page) ? page?.[0] : page) as string)
-      : 1
-
-    // search
-    searchTerm.value = q?.toString() || ''
-
-    // filters
-    let key: keyof typeof FILTERABLE_FIELDS
-    for (key in filters) {
-      filters[key] = filterQueryParams[key]?.toString() || ''
-    }
-
     const [{ features }, count] = await Promise.all([
       projectsFeatureLayer.queryFeatures(queryParams.value),
       projectsFeatureLayer.queryFeatureCount(queryParams.value),
@@ -63,6 +46,29 @@ export async function fetchProjects(
   } finally {
     projects.loading = false
   }
+}
+
+export async function fetchProjects(
+  to: RouteLocationNormalized,
+  from: RouteLocationNormalized
+): Promise<void> {
+  const { page, q, ...filterQueryParams } = to.query
+
+  // pagination
+  pagination.page = page
+    ? parseInt((Array.isArray(page) ? page?.[0] : page) as string)
+    : 1
+
+  // search
+  searchTerm.value = q?.toString() || ''
+
+  // filters
+  let key: keyof typeof EFilterableFields
+  for (key in filters) {
+    filters[key] = filterQueryParams[key]?.toString() || ''
+  }
+
+  queryFeatures()
 }
 
 //

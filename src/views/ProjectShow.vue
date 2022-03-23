@@ -15,7 +15,9 @@ onBeforeRouteUpdate(fetchProject)
       {{ project.name }}
     </h1>
 
-    <h2 class="mb-0 text-primary font-weight-bold">#{{ project.cipNumber }}</h2>
+    <h2 class="mb-0 text-secondary font-weight-bold">
+      #{{ project.cipNumber }}
+    </h2>
 
     <hr />
 
@@ -54,7 +56,7 @@ onBeforeRouteUpdate(fetchProject)
           </ul>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6" v-if="project.projectBudget">
           <h3>Budget Breakdown</h3>
           <ul>
             <li>
@@ -86,7 +88,6 @@ onBeforeRouteUpdate(fetchProject)
 
       <div class="row">
         <div class="col-md-12">
-          <!-- <div class="col-md-5"> -->
           <h3>Objectives</h3>
           <ul>
             <li v-if="project.objectiveOne">{{ project.objectiveOne }}</li>
@@ -105,16 +106,6 @@ onBeforeRouteUpdate(fetchProject)
               >
             </p>
           </div>
-          <!-- </div> -->
-
-          <!-- <div class="col-md-7"> -->
-          <!-- map -->
-          <div
-            v-if="false"
-            class="embed-responsive embed-responsive-16by9 my-3"
-          >
-            <div is="ProjMap" :geometry="project.geometry"></div>
-          </div>
         </div>
       </div>
     </div>
@@ -128,12 +119,12 @@ onBeforeRouteUpdate(fetchProject)
     <hr />
 
     <div class="d-flex justify-content-end align-items-end">
-      <small class=""
-        >Current as of
-        <strong>{{
-          new Date(project.lastEditedDate).toLocaleDateString()
-        }}</strong></small
-      >
+      <small class="">
+        Current as of
+        <strong>
+          {{ project.lastEditedDate.toLocaleDateString() }}
+        </strong>
+      </small>
     </div>
   </div>
 </template>

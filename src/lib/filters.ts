@@ -2,7 +2,7 @@ import { computed, reactive, ref } from 'vue'
 
 export const searchTerm = ref<string>('')
 
-export enum FILTERABLE_FIELDS {
+export enum EFilterableFields {
   type = 'Project_Type',
   category = 'Major_Category',
   phase = 'Current_Phase',
@@ -16,29 +16,42 @@ export const filters = reactive({
   community: '',
 })
 
+export const filterableFields = computed<IFilterableFormField[]>(() => {
+  let fields: IFilterableFormField[] = []
+  let key: keyof typeof EFilterableFields
+  for (key in filters) {
+    fields.push({
+      name: key,
+      esriField: EFilterableFields[key],
+      value: filters[key],
+    })
+  }
+  return fields
+})
+
 export const defaultWhereClause = `Current_Phase <> 'Completed'`
 
 export const whereClause = computed(() =>
-  [defaultWhereClause, searchClause.value, filterClause.value]
+  [searchClause.value, defaultWhereClause, filterClause.value]
     .filter(Boolean)
     .join(' AND ')
 )
 
-export const searchClause = computed(() =>
-  searchTerm.value
-    ? ['ProjectName', 'CIP_Number']
-        .map((x) => `${x} LIKE '%${searchTerm.value}%'`)
-        .join(' OR ')
-    : null
-)
+export const searchClause = computed(() => {
+  if (!searchTerm.value) return null
+  const value = ['ProjectName', 'CIP_Number']
+    .map((x) => `${x} LIKE '%${searchTerm.value}%'`)
+    .join(' OR ')
+  return `(${value})`
+})
 
 export const filterClause = computed(() => {
   let expressions: string[] = []
 
-  let key: keyof typeof FILTERABLE_FIELDS
+  let key: keyof typeof EFilterableFields
   for (key in filters) {
-    if (!filters[key]) break
-    expressions.push(`${FILTERABLE_FIELDS[key]} = '${filters[key]}'`)
+    if (!filters[key]) continue
+    expressions.push(`${EFilterableFields[key]} = '${filters[key]}'`)
   }
   return expressions.join(' AND ')
 })

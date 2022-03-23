@@ -3,11 +3,6 @@ import { reactive } from 'vue'
 import { projectsFeatureLayer } from '../lib/projects'
 import { defaultWhereClause } from '../lib/filters'
 
-interface IReactiveFieldValues {
-  loading: boolean
-  data: any[] | undefined
-}
-
 const props = defineProps<{ field: any }>()
 
 const fieldValues = reactive<IReactiveFieldValues>({

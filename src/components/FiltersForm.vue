@@ -1,18 +1,6 @@
 <script setup lang="ts">
-import { filters, searchTerm } from '../lib/filters'
-import { FILTERABLE_FIELDS } from '../lib/filters'
-import type { IFilterableFormField } from '../lib/types'
+import { searchTerm, filterableFields } from '../lib/filters'
 import FiltersFormField from './FiltersFormField.vue'
-
-let fields: IFilterableFormField[] = []
-let key: keyof typeof FILTERABLE_FIELDS
-for (key in filters) {
-  fields.push({
-    name: key,
-    esriField: FILTERABLE_FIELDS[key],
-    value: filters[key],
-  })
-}
 </script>
 
 <template>
@@ -56,7 +44,10 @@ for (key in filters) {
           data-bs-parent="#advancedSearch"
         >
           <div class="accordion-body">
-            <FiltersFormField v-for="field in fields" :field="field" />
+            <FiltersFormField
+              v-for="field in filterableFields"
+              :field="field"
+            />
 
             <!-- actions -->
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
