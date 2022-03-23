@@ -29,8 +29,6 @@ export const projects = reactive<IReactiveProjects>({
 export async function queryFeatures() {
   projects.loading = true
 
-  console.log(queryParams.value)
-
   try {
     const [{ features }, count] = await Promise.all([
       projectsFeatureLayer.queryFeatures(queryParams.value),
