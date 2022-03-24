@@ -8,5 +8,5 @@ import Breadcrumbs from './components/Breadcrumbs.vue'
 <template>
   <Breadcrumbs />
 
-  <router-view :key="$route.fullPath"></router-view>
+  <router-view></router-view>
 </template>

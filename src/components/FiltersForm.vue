@@ -1,10 +1,24 @@
 <script setup lang="ts">
 import { searchTerm, filterableFields } from '../lib/filters'
 import FiltersFormField from './FiltersFormField.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const submit = (e: Event) => {
+  const formData = new FormData(e.target as HTMLFormElement)
+
+  let query: IFormDataQuery = {}
+  for (const [k, v] of formData.entries()) {
+    query[k] = v.toString()
+  }
+
+  router.push({ path: `/`, query })
+}
 </script>
 
 <template>
-  <form action="/" class="mb-3">
+  <form @submit.prevent="submit" class="mb-3">
     <!-- search -->
 
     <div class="input-group input-group-lg mb-3">

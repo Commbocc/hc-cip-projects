@@ -25,3 +25,7 @@ interface IReactiveFieldValues {
   loading: boolean
   data: any[] | undefined
 }
+
+interface IFormDataQuery {
+  [key: string]: string
+}

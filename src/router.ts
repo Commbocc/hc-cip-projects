@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { fetchProjects, fetchProject } from './lib/projects'
 
 // 1. Define route components.
@@ -31,6 +31,6 @@ export const routes = [
 // keep it simple for now.
 export const router = createRouter({
   // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes, // short for `routes: routes`
 })
