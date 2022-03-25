@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { searchTerm, filterableFields } from '../lib/filters'
+import { searchTerm, EFilterableFields } from '../lib/filters'
 import FiltersFormField from './FiltersFormField.vue'
 import { useRouter } from 'vue-router'
 
@@ -8,7 +8,7 @@ const router = useRouter()
 const submit = (e: Event) => {
   const formData = new FormData(e.target as HTMLFormElement)
 
-  let query: IFormDataQuery = {}
+  let query: Record<string, string> = {}
   for (const [k, v] of formData.entries()) {
     query[k] = v.toString()
   }
@@ -59,7 +59,7 @@ const submit = (e: Event) => {
         >
           <div class="accordion-body">
             <FiltersFormField
-              v-for="field in filterableFields"
+              v-for="(esriFieldName, field) in EFilterableFields"
               :field="field"
             />
 

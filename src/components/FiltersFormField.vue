@@ -1,31 +1,33 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 import { projectsFeatureLayer } from '../lib/projects'
-import { defaultWhereClause } from '../lib/filters'
+import { defaultWhereClause, EFilterableFields, filters } from '../lib/filters'
 
-const props = defineProps<{ field: any }>()
+const props = defineProps<{ field: keyof typeof EFilterableFields }>()
 
-const fieldValues = reactive<IReactiveFieldValues>({
+const fieldOptions = reactive<IReactiveFilterableFieldOptions>({
   loading: false,
   data: [],
 })
 
 const fetchDistinctValues = async () => {
-  fieldValues.loading = true
+  fieldOptions.loading = true
 
   const params: __esri.QueryProperties = {
-    outFields: [props.field.esriField],
+    outFields: [EFilterableFields[props.field]],
     returnDistinctValues: true,
     where: defaultWhereClause,
   }
 
   try {
     const { features } = await projectsFeatureLayer.queryFeatures(params)
-    fieldValues.data = features?.map((x) => x.attributes[props.field.esriField])
+    fieldOptions.data = features?.map(
+      (x) => x.attributes[EFilterableFields[props.field]]
+    )
   } catch (error) {
     //
   } finally {
-    fieldValues.loading = false
+    fieldOptions.loading = false
   }
 }
 
@@ -34,18 +36,21 @@ fetchDistinctValues()
 
 <template>
   <div class="my-1">
-    <label class="mr-sm-1 mb-1 text-capitalize" for="">{{ field.name }}</label>
-    <div v-if="fieldValues.loading">
+    <label class="mr-sm-1 mb-1 text-capitalize" :for="field">
+      {{ field }}
+    </label>
+    <div v-if="fieldOptions.loading">
       Loading Filter... <i class="fas fa-spinner fa-pulse"></i>
     </div>
     <select
       v-else
       class="form-control form-control-sm mr-sm-2"
-      :name="field.name"
-      :value="field.value"
+      :name="field"
+      :value="filters[field]"
+      :id="field"
     >
       <option value="">-</option>
-      <option v-for="(val, i) in fieldValues.data">{{ val }}</option>
+      <option v-for="(val, i) in fieldOptions.data">{{ val }}</option>
     </select>
   </div>
 </template>

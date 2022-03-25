@@ -9,25 +9,14 @@ export enum EFilterableFields {
   community = 'Community',
 }
 
-export const filters = reactive({
-  type: '',
-  category: '',
-  phase: '',
-  community: '',
-})
-
-export const filterableFields = computed<IFilterableFormField[]>(() => {
-  let fields: IFilterableFormField[] = []
-  let key: keyof typeof EFilterableFields
-  for (key in filters) {
-    fields.push({
-      name: key,
-      esriField: EFilterableFields[key],
-      value: filters[key],
-    })
+export const filters = reactive<Record<keyof typeof EFilterableFields, string>>(
+  {
+    type: '',
+    category: '',
+    phase: '',
+    community: '',
   }
-  return fields
-})
+)
 
 export const defaultWhereClause = `Current_Phase <> 'Completed'`
 
